@@ -1,0 +1,5 @@
+FROM alpine
+RUN apk update && apk add mosquitto-clients
+RUN apk add --no-cache python3 py3-pip
+RUN pip3 install paho-mqtt
+COPY model_fwd.py model_fwd.py

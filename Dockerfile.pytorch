@@ -109,5 +109,12 @@ ENV LD_LIBRARY_PATH="/usr/local/cuda/lib64:${LD_LIBRARY_PATH}"
 RUN echo "$PATH" && echo "$LD_LIBRARY_PATH"
 
 RUN pip3 install pycuda --verbose
+
 RUN pip3 install --upgrade pip
 RUN pip3 install jupyter
+RUN pip3 install pandas
+RUN pip3 install scikit-learn
+RUN pip3 install matplotlib
+RUN pip3 install paho-mqtt
+
+RUN apt-get update && apt-get -y install vim
