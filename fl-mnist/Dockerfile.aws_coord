@@ -11,4 +11,4 @@ RUN pip3 install Cython
 RUN pip3 install numpy
 RUN pip3 install pandas
 RUN pip3 install paho-mqtt
-RUN pip3 install torch torchvision torchaudio
+RUN pip3 install torch==1.4.0
