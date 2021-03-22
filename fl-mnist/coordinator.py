@@ -23,11 +23,17 @@ remote_mqttclient.connect(REMOTE_TRAINER_HOST, REMOTE_MQTT_PORT, 60)
 def send_initial_model():
     global_model = CNNModel()
     buff = io.BytesIO()
-    torch.save(model.state_dict(), buff)
+    torch.save(global_model.state_dict(), buff)
     buff.seek(0) 
-    
+
     # Convert model to string for transmission
     model_str = buff.getvalue()
+
+    # Testing the conversion
+    buff1 = io.BytesIO(bytes(model_str))
+    global_model.load_state_dict(torch.load(buff1))
+
+    print('Sending initial model to trainers...')
     remote_mqttclient.publish(REMOTE_TRAINER_TOPIC, payload=model_str, qos=0, retain=False)
 
 def on_connect_local(client, userdata, flags, rc):
