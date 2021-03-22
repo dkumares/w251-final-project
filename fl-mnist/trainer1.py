@@ -3,26 +3,28 @@ import numpy as np
 from sklearn.model_selection import train_test_split
 import os
 import io
+import sys
 import time
 import torch
 import torch.nn as nn
 import paho.mqtt.client as mqtt
-#from torch.autograd import Variable
 from model import CNNModel
 
 LOCAL_MQTT_HOST="mqtt_brkr"
 LOCAL_MQTT_PORT=1883
-LOCAL_MQTT_TOPIC="fed_ml/trainer1/model"
+TRAINED_MODEL_TOPIC="fed_ml/trainer1/model"
 
-REMOTE_MQTT_HOST="34.213.224.165"
+REMOTE_MQTT_HOST="52.41.7.93"
 REMOTE_MQTT_PORT=1883
-REMOTE_COORDINATOR_TOPIC="fed_ml/coordinator/model"
+REMOTE_COORDINATOR_TOPIC="fed_ml/coordinator/+/model"
 
 batch_size = 100
 data_file = 'data/mnist_train.csv'
 
 remote_mqttclient = mqtt.Client()
 remote_mqttclient.connect(REMOTE_MQTT_HOST, REMOTE_MQTT_PORT, 60)
+
+model = CNNModel()
 
 def get_data_loaders():
     print('Loading data...')
@@ -54,6 +56,7 @@ def get_data_loaders():
     train_loader = torch.utils.data.DataLoader(train, batch_size = batch_size, shuffle = False)
     valid_loader = torch.utils.data.DataLoader(valid, batch_size = batch_size, shuffle = False)
     
+    print('Completed loading data')
     return train_loader, valid_loader
 
 def train_and_send(global_model_weights):
@@ -61,7 +64,6 @@ def train_and_send(global_model_weights):
     if torch.cuda.is_available():
         device = 'cuda'
     
-    model = CNNModel()
     model.load_state_dict(torch.load(global_model_weights))
     model.to(device)
     
@@ -93,7 +95,7 @@ def train_and_send(global_model_weights):
         # Update parameters
         optimizer.step()
         
-        count += 1
+        
         if count % 100 == 0:
             # Calculate Accuracy         
             correct = 0
@@ -121,10 +123,12 @@ def train_and_send(global_model_weights):
         if count % 100 == 0:
             # Print Loss
             print('Iteration: {}  Loss: {}  Accuracy: {} %'.format(count, loss.data, accuracy))
-
+        
+        count += 1
+        
     end_time = time.time()
     print('Time taken for epoch: ', str(end_time - start_time))
-    remote_mqttclient.publish(REMOTE_MQTT_TOPIC, payload="Completed 1 epoch", qos=0, retain=False)
+    remote_mqttclient.publish(TRAINED_MODEL_TOPIC, payload="Completed 1 epoch", qos=0, retain=False)
     
     
 def on_connect_local(client, userdata, flags, rc):
@@ -135,11 +139,16 @@ def on_message(client,userdata, msg):
   try:
     print("Model received from coordinator!")
     print(msg.topic)
+    #print(msg.payload)
+    
     model_str = msg.payload
-    global_model_weights_buff = io.BytesIO(bytes(model_str))
-    train_and_send(global_model_weights_buff)    
+    buff = io.BytesIO(bytes(model_str))
+    
+    #model.load_state_dict(torch.load(buff))
+    #print('Model loading complete!')
+    train_and_send(buff)    
   except:
-    print("Unexpected error:", sys.exc_info()[0])
+    print("Unexpected error:", sys.exc_info())
 
 # Load the data
 train_loader, valid_loader = get_data_loaders()
