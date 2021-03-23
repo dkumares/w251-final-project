@@ -4,6 +4,7 @@ import io
 import numpy as np
 import sys
 import time
+import copy
 import torch 
 import pandas as pd
 from model import CNNModel
@@ -19,9 +20,12 @@ REMOTE_TRAINER_TOPIC="fed_ml/coordinator/epoch_num/model"
 
 NUM_TRAINERS = len(REMOTE_TRAINER_HOSTS)
 BATCH_SIZE = 100
+TOTAL_EPOCHS = 10
 
 trainer_weights = []
 remote_mqttclients = []
+accuracies = []
+
 # Connect to Jetson to send weights to trainers
 for remote_host in REMOTE_TRAINER_HOSTS:
     remote_mqttclient = mqtt.Client()
@@ -30,6 +34,7 @@ for remote_host in REMOTE_TRAINER_HOSTS:
 
 global_model = CNNModel()
 current_epoch = 1
+
 def get_test_dataloader():
     print('Loading test data...')
     df_test = pd.read_csv('data/mnist_test.csv')
@@ -77,11 +82,13 @@ def average_weights(w):
     return w_avg
 
 def update_global_weights_and_send(weights):
-    global_weights = average_weights(worker_models)
+    global_weights = average_weights(weights)
     
     # Load global model for evaluation
     global_model.load_state_dict(global_weights)
     global_model.eval()
+    total = 0
+    correct = 0
     for test_images, labels in test_loader:
         # Forward propagation
         outputs = global_model(test_images)
@@ -94,9 +101,21 @@ def update_global_weights_and_send(weights):
 
     accuracy = 100 * correct / float(total)
     accuracies.append(accuracy)
+    
+    global current_epoch 
+
     print('Epoch: {} Accuracy: {} %'.format(current_epoch, accuracy))
     
-    current_epoch += 1
+    if current_epoch == TOTAL_EPOCHS:
+        print('Sending EXIT to all trainers...')
+        topic = REMOTE_TRAINER_TOPIC.replace('epoch_num', 'exit')
+        for remote_mqttclient in remote_mqttclients:
+            remote_mqttclient.publish(topic, payload='bye', qos=0, retain=False)
+        print('Training Complete!')
+        os._exit(0)
+
+
+    current_epoch = current_epoch + 1
 
     model_str = encode_weights(global_model)
     topic = REMOTE_TRAINER_TOPIC.replace('epoch_num', str(current_epoch))
@@ -116,7 +135,7 @@ def on_message(client,userdata, msg):
   try:
     print("Model from trainer received!")
     print('Topic: ', msg.topic)
-    print('Message: ', msg.payload)
+    #print('Message: ', msg.payload)
     
     model_str = msg.payload
     buff = io.BytesIO(bytes(model_str))
@@ -124,15 +143,15 @@ def on_message(client,userdata, msg):
     # Create a dummy model to read weights
     model = CNNModel()
     model.load_state_dict(torch.load(buff))
+    
+    global trainer_weights
     trainer_weights.append(copy.deepcopy(model.state_dict()))
     
     # Wait until we get trained weights from all trainers
-    if len(trainer_models) == num_trainers:
+    if len(trainer_weights) == NUM_TRAINERS:
         update_global_weights_and_send(trainer_weights)
-        trainer_weights = []
+        trainer_weights.clear()
 
-    #print("Sending Ack...")
-    #remote_mqttclient.publish(REMOTE_TRAINER_TOPIC, payload="Model RECEIVED!", qos=0, retain=False)
   except:
     print("Unexpected error:", sys.exc_info())
 
