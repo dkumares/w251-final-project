@@ -1,4 +1,5 @@
 import torch
+import io
 
 def encode_weights(model):
     buff = io.BytesIO()
