@@ -81,6 +81,7 @@ def train_and_send(global_model_weights, current_epoch):
     iteration_list = []
     accuracy_list = []
     
+    print('Start training...')
     start_time = time.time()
     for i, (images, labels) in enumerate(train_loader):
         train = images.to(device)
@@ -131,6 +132,7 @@ def train_and_send(global_model_weights, current_epoch):
     print('Epoch completed. Time taken (seconds): ', str(end_time - start_time))
     
     # Encode model weights and send
+    model.to('cpu')
     model_str = encode_weights(model)
     remote_mqttclient.publish(TRAINED_MODEL_TOPIC, payload=model_str, qos=0, retain=False)
     
@@ -145,7 +147,11 @@ def on_message(client,userdata, msg):
     print("Model received from coordinator!")
     print('Topic: ', msg.topic)
     #print(msg.payload)
-    epoch_num = re.search('coordinator/(\d+)/model', msg.topic).group(1)
+    epoch_num = re.search('coordinator/(.+)/model', msg.topic).group(1)
+    if epoch_num == 'exit':
+        print('Got EXIT from coordinator. Exiting...')
+        os._exit(0)
+    
     current_epoch = int(epoch_num)
     
     # Decode the model weights
