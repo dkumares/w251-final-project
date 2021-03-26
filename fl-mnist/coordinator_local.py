@@ -113,7 +113,7 @@ def update_global_weights_and_send(weights):
         topic = REMOTE_TRAINER_TOPIC.replace('epoch_num', 'exit')
         #for remote_mqttclient in remote_mqttclients:
         #    remote_mqttclient.publish(topic, payload='bye', qos=0, retain=False)
-        local_mqttclient.publish(topic, payload=model_str, qos=2, retain=False)
+        local_mqttclient.publish(topic, payload='bye', qos=2, retain=False)
         print('Training Complete!')
         os._exit(0)
 
