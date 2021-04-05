@@ -1,8 +1,11 @@
 import torch
 import torch.nn as nn
 
-class MLP(nn.Module):
-    # define model elements
+class MLP(nn.Module):	
+    # Defining the DNN model
+    hidden_layers = [128]
+    output_size = 15
+
     def __init__(self, n_inputs):
         super(MLP, self).__init__()
         self.layer1 = nn.Linear(n_inputs, hidden_layers[0])
