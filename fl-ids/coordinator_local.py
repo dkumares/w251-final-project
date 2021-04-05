@@ -219,7 +219,8 @@ def on_message(client,userdata, msg):
     buff = io.BytesIO(bytes(model_str))
 
     # Create a dummy model to read weights
-    model = MLP()
+    input_size=78
+    model = MLP(input_size)
     model.load_state_dict(torch.load(buff))
     
     global trainer_weights
