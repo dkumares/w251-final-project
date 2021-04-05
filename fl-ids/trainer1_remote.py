@@ -9,7 +9,7 @@ import time
 import torch
 import torch.nn as nn
 import paho.mqtt.client as mqtt
-from model import CNNModel
+from model import MLP
 from utils import *
 from sklearn.preprocessing import LabelEncoder
 from sklearn.model_selection import train_test_split
@@ -22,8 +22,6 @@ REMOTE_COORDINATOR_TOPIC="fed_ml/coordinator/+/model"
 
 batch_size = 1000
 data_file = '../data/IDS-2018-multiclass.csv'
-
-model = MLP()
 
 def get_label(text):    
     if text == "Benign":
@@ -124,6 +122,9 @@ def train_and_send(global_model_weights, current_epoch):
     if torch.cuda.is_available():
         device = 'cuda'
     
+    # Defining the DNN model
+    input_size = train_loader.dataset.tensors[0].shape[1]
+    model = MLP(input_size)
     model.load_state_dict(torch.load(global_model_weights))
     model.to(device)
     

@@ -7,7 +7,7 @@ import time
 import copy
 import torch 
 import pandas as pd
-from model import CNNModel
+from model import MLP
 from utils import *
 
 LOCAL_MQTT_HOST="mqtt_brkr"
@@ -20,7 +20,7 @@ REMOTE_TRAINER_TOPIC="fed_ml/coordinator/epoch_num/model"
 
 #NUM_TRAINERS = len(REMOTE_TRAINER_HOSTS)
 NUM_TRAINERS = 1
-BATCH_SIZE = 100
+BATCH_SIZE = 1000
 TOTAL_EPOCHS = 10
 
 trainer_weights = []
@@ -35,7 +35,8 @@ accuracies = []
 
 data_file = '../data/IDS-2018-multiclass.csv'
 
-global_model = MLP()
+input_size=78
+global_model = MLP(input_size)
 current_epoch = 1
 
 def get_label(text):    
