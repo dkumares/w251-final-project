@@ -25,7 +25,7 @@ REMOTE_TRAINER_TOPIC="fed_ml/coordinator/epoch_num/model"
 
 #NUM_TRAINERS = len(REMOTE_TRAINER_HOSTS)
 NUM_TRAINERS = 1
-BATCH_SIZE = 1000
+batch_size = 1000
 TOTAL_EPOCHS = 10
 
 trainer_weights = []
