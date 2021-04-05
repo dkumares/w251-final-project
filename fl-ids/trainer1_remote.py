@@ -16,7 +16,7 @@ from sklearn.model_selection import train_test_split
 
 TRAINED_MODEL_TOPIC="fed_ml/trainer1/model"
 
-REMOTE_MQTT_HOST="18.225.33.16"
+REMOTE_MQTT_HOST="18.217.52.230" # Change this IP address to the public IP Address of your EC2 instance that acts as a coordinator"
 REMOTE_MQTT_PORT=1883
 REMOTE_COORDINATOR_TOPIC="fed_ml/coordinator/+/model"
 
