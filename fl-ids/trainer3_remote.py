@@ -14,7 +14,7 @@ from utils import *
 from sklearn.preprocessing import LabelEncoder
 from sklearn.model_selection import train_test_split
 
-TRAINED_MODEL_TOPIC="fed_ml/trainer1/model"
+TRAINED_MODEL_TOPIC="fed_ml/trainer333/model"
 
 REMOTE_MQTT_HOST="18.237.219.233" # Change this IP address to the public IP Address of your EC2 instance that acts as a coordinator"
 REMOTE_MQTT_PORT=1883
