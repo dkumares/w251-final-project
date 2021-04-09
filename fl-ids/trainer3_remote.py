@@ -11,8 +11,17 @@ import torch.nn as nn
 import paho.mqtt.client as mqtt
 from model import MLP
 from utils import *
+from conf import RUN_TIME
 from sklearn.preprocessing import LabelEncoder
 from sklearn.model_selection import train_test_split
+
+CURRENT_DIR = os.path.dirname(os.path.realpath(__file__))
+ROOT_DIR = os.path.dirname(CURRENT_DIR)
+
+sys.path.insert(0, ROOT_DIR)
+
+from util.set_up_logger import get_logger
+logger = get_logger(os.path.splitext(os.path.basename(__file__))[0], write_logs_to_file=True, run_time=RUN_TIME)
 
 TRAINED_MODEL_TOPIC="fed_ml/trainer333/model"
 

@@ -11,8 +11,17 @@ import torch.nn as nn
 import paho.mqtt.client as mqtt
 from model import MLP
 from utils import *
+from conf import RUN_TIME
 from sklearn.preprocessing import LabelEncoder
 from sklearn.model_selection import train_test_split
+
+CURRENT_DIR = os.path.dirname(os.path.realpath(__file__))
+ROOT_DIR = os.path.dirname(CURRENT_DIR)
+
+sys.path.insert(0, ROOT_DIR)
+
+from util.set_up_logger import get_logger
+logger = get_logger(os.path.splitext(os.path.basename(__file__))[0], write_logs_to_file=True, run_time=RUN_TIME)
 
 TRAINED_MODEL_TOPIC="fed_ml/trainer2/model"
 
@@ -21,7 +30,7 @@ REMOTE_MQTT_PORT=1883
 REMOTE_COORDINATOR_TOPIC="fed_ml/coordinator/+/model"
 
 batch_size = 1000
-data_file = 'data/test-02-16-2018-dos-slowhttp-hulk.csv'
+data_file = 'data/TRAINER-02-IDS-2018-multiclass.csv'
 
 def get_label(text):    
     if text == "Benign":
@@ -191,12 +200,13 @@ def train_and_send(global_model_weights, current_epoch):
         if count % 500 == 0:
             # Print Loss
             print('Global Epoch:{} Iteration: {}  Loss: {}  Accuracy: {} %'.format(current_epoch, count, loss.data, accuracy))
+            with open('trainer2.out', 'a+') as f:
+                print('Global Epoch:{} Iteration: {}  Loss: {}  Accuracy: {} %'.format(current_epoch, count, loss.data, accuracy), file=f)
         
         count += 1
         
     end_time = time.time()
     print('Epoch completed. Time taken (seconds): ', str(end_time - start_time))
-    
     # Encode model weights and send
     model.to('cpu')
     model_str = encode_weights(model)
@@ -233,7 +243,7 @@ def on_message(client,userdata, msg):
 train_loader, valid_loader = get_data_loaders()
 
 remote_mqttclient = mqtt.Client()
-remote_mqttclient.connect(REMOTE_MQTT_HOST, REMOTE_MQTT_PORT, 60)
+remote_mqttclient.connect(REMOTE_MQTT_HOST, REMOTE_MQTT_PORT, 600)
 remote_mqttclient.on_connect = on_connect_remote
 remote_mqttclient.on_message = on_message
 
