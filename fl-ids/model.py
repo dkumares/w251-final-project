@@ -4,7 +4,7 @@ import torch.nn as nn
 class MLP(nn.Module):	
     def __init__(self, n_inputs):
 	# Defining the DNN model
-        hidden_layers = [128]
+        hidden_layers = [256]
         output_size = 15
         super(MLP, self).__init__()
         self.layer1 = nn.Linear(n_inputs, hidden_layers[0])
