@@ -7,8 +7,10 @@ RUN apt install -y mosquitto-clients
 RUN apt install -y curl
 RUN apt install -y unzip
 RUN apt install -y vim
+RUN apt install -y wget
 RUN pip3 install Cython
 RUN pip3 install numpy
 RUN pip3 install pandas
 RUN pip3 install paho-mqtt
 RUN pip3 install torch==1.4.0
+RUN pip3 install sklearn
