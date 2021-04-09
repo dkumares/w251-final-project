@@ -199,7 +199,7 @@ def on_connect_local(client, userdata, flags, rc):
 def on_message(client,userdata, msg):
   try:
     logger.info("Model from trainer received!")
-    logger.info('Topic: ', msg.topic)
+    logger.info(f'Topic: {str(msg.topic)}')
     #logger.info('Message: ', msg.payload)
     
     model_str = msg.payload
@@ -219,7 +219,7 @@ def on_message(client,userdata, msg):
         trainer_weights.clear()
 
   except:
-    logger.info("Unexpected error:", sys.exc_info())
+    logger.info(f"Unexpected error: {str(sys.exc_info())}")
 
 # Connect to local broker to receive weights from trainers
 local_mqttclient = mqtt.Client()
