@@ -27,9 +27,6 @@ logger = get_logger(os.path.splitext(os.path.basename(__file__))[0], write_logs_
 LOCAL_MQTT_HOST="mqtt_brkr"
 LOCAL_MQTT_PORT=1883
 TRAINED_MODEL_TOPIC="fed_ml/+/model"
-
-#REMOTE_TRAINER_HOSTS=["67.161.18.122"]
-#REMOTE_MQTT_PORT=1883
 REMOTE_TRAINER_TOPIC="fed_ml/coordinator/epoch_num/model"
 
 #NUM_TRAINERS = len(REMOTE_TRAINER_HOSTS)
@@ -40,12 +37,6 @@ TOTAL_EPOCHS = 10
 trainer_weights = []
 remote_mqttclients = []
 accuracies = []
-
-# Connect to Jetson to send weights to trainers
-#for remote_host in REMOTE_TRAINER_HOSTS:
-#    remote_mqttclient = mqtt.Client()
-#    remote_mqttclient.connect(remote_host, REMOTE_MQTT_PORT, 60)
-#    remote_mqttclients.append(remote_mqttclient)
 
 data_file = '../data/IDS-2018-multiclass.csv'
 
@@ -89,7 +80,8 @@ def get_test_dataloader():
     logger.info('Loading test data...')
     IDS_df = pd.read_csv(data_file)
     IDS_df = IDS_df.drop('timestamp', axis=1)
-    
+
+    '''    
     # Finding the null values.
     logger.info(IDS_df.isin([np.nan, np.inf, -np.inf]).sum().sum())
 
@@ -100,8 +92,9 @@ def get_test_dataloader():
 
     # Finding the null values.
     logger.info(IDS_df.isin([np.nan, np.inf, -np.inf]).sum().sum())
+    '''
 
-    IDS_df["label"] = IDS_df["label"].apply(get_label)
+    IDS_df["label"] = IDS_df["label"].apply(get_label)    
 
     # Convert all categorical features into numerical form:
     encodings_dictionary = dict()
@@ -110,22 +103,8 @@ def get_test_dataloader():
      	   encodings_dictionary[c] = LabelEncoder()
      	   IDS_df[c] = encodings_dictionary[c].fit_transform(IDS_df[c])
 
-    IDS_df_normal = IDS_df[IDS_df["label"] == 0]
-    IDS_df_abnormal = IDS_df[IDS_df["label"] != 0]
-    y_normal = IDS_df_normal.pop("label").values
-    X_normal = IDS_df_normal.values
-    y_anomaly = IDS_df_abnormal.pop("label").values
-    X_anomaly = IDS_df_abnormal.values
-
-    # Train-test split the dataset:
-    X_normal_train, X_normal_test, y_normal_train, y_normal_test = train_test_split(
-    	X_normal, y_normal, test_size=0.2, random_state=11)
-
-    X_anomaly_train, X_anomaly_test, y_anomaly_train, y_anomaly_test = train_test_split(
-    	X_anomaly, y_anomaly, test_size=0.2, random_state=11, stratify=y_anomaly)
-
-    X_test = np.concatenate((X_normal_test, X_anomaly_test))
-    y_test = np.concatenate((y_normal_test, y_anomaly_test))
+    y_test = IDS_df.pop("label").values
+    X_test = IDS_df.values
 
     # Pytorch
     X_test = torch.from_numpy(X_test).float()
@@ -155,8 +134,7 @@ def send_initial_model():
     #global_model.load_state_dict(torch.load(buff1))
     topic = REMOTE_TRAINER_TOPIC.replace('epoch_num', str(current_epoch))
     logger.info('Sending initial model to trainers...')
-    #for remote_mqttclient in remote_mqttclients:
-    #    remote_mqttclient.publish(topic, payload=model_str, qos=0, retain=False)
+
     local_mqttclient.publish(topic, payload=model_str, qos=2, retain=False)
 
 def average_weights(w):
@@ -178,6 +156,7 @@ def update_global_weights_and_send(weights):
     for test_data, labels in test_loader:
         # Forward propagation
         outputs = global_model(test_data)
+
         # Get predictions from the maximum value
         predicted = torch.max(outputs.data, 1)[1]
 
@@ -195,8 +174,7 @@ def update_global_weights_and_send(weights):
     if current_epoch == TOTAL_EPOCHS:
         logger.info('Sending EXIT to all trainers...')
         topic = REMOTE_TRAINER_TOPIC.replace('epoch_num', 'exit')
-        #for remote_mqttclient in remote_mqttclients:
-        #    remote_mqttclient.publish(topic, payload='bye', qos=0, retain=False)
+ 
         local_mqttclient.publish(topic, payload='bye', qos=2, retain=False)
         logger.info('Training Complete!')
         os._exit(0)
