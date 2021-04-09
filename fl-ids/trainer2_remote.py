@@ -65,20 +65,20 @@ def get_label(text):
         return 14
 
 def get_data_loaders():
-    print('Loading data...')
+    logger.info('Loading data...')
     IDS_df = pd.read_csv(data_file)
     IDS_df = IDS_df.drop('timestamp', axis=1)
     
     # Finding the null values.
-    print(IDS_df.isin([np.nan, np.inf, -np.inf]).sum().sum())
+    logger.info(IDS_df.isin([np.nan, np.inf, -np.inf]).sum().sum())
 
-    # print shape after dropping NaN rows
+    # logger.info shape after dropping NaN rows
     IDS_df = IDS_df.dropna()
-    print(IDS_df.shape)
+    logger.info(IDS_df.shape)
     IDS_df = IDS_df.reset_index(drop=True)
 
     # Finding the null values.
-    print(IDS_df.isin([np.nan, np.inf, -np.inf]).sum().sum())
+    logger.info(IDS_df.isin([np.nan, np.inf, -np.inf]).sum().sum())
 
     IDS_df["label"] = IDS_df["label"].apply(get_label)
 
@@ -123,7 +123,7 @@ def get_data_loaders():
     train_loader = torch.utils.data.DataLoader(train, batch_size = batch_size, shuffle = True)
     valid_loader = torch.utils.data.DataLoader(valid, batch_size = batch_size, shuffle = True)
 
-    print('Completed loading data')
+    logger.info('Completed loading data')
     return train_loader, valid_loader
 
 def train_and_send(global_model_weights, current_epoch):
@@ -150,7 +150,7 @@ def train_and_send(global_model_weights, current_epoch):
     iteration_list = []
     accuracy_list = []
     
-    print('Start training...')
+    logger.info('Start training...')
     start_time = time.time()
     for i, (data, labels) in enumerate(train_loader):
         train = data.to(device)
@@ -198,33 +198,33 @@ def train_and_send(global_model_weights, current_epoch):
             iteration_list.append(count)
             accuracy_list.append(accuracy)
         if count % 500 == 0:
-            # Print Loss
-            print('Global Epoch:{} Iteration: {}  Loss: {}  Accuracy: {} %'.format(current_epoch, count, loss.data, accuracy))
+            # logger.info Loss
+            logger.info('Global Epoch:{} Iteration: {}  Loss: {}  Accuracy: {} %'.format(current_epoch, count, loss.data, accuracy))
             with open('trainer2.out', 'a+') as f:
-                print('Global Epoch:{} Iteration: {}  Loss: {}  Accuracy: {} %'.format(current_epoch, count, loss.data, accuracy), file=f)
+                logger.info('Global Epoch:{} Iteration: {}  Loss: {}  Accuracy: {} %'.format(current_epoch, count, loss.data, accuracy), file=f)
         
         count += 1
         
     end_time = time.time()
-    print('Epoch completed. Time taken (seconds): ', str(end_time - start_time))
+    logger.info('Epoch completed. Time taken (seconds): ', str(end_time - start_time))
     # Encode model weights and send
     model.to('cpu')
     model_str = encode_weights(model)
     remote_mqttclient.publish(TRAINED_MODEL_TOPIC, payload=model_str, qos=2, retain=False)    
     
 def on_connect_remote(client, userdata, flags, rc):
-    print("Connected to remote broker with rc: " + str(rc))
+    logger.info("Connected to remote broker with rc: " + str(rc))
     client.subscribe(REMOTE_COORDINATOR_TOPIC)
-    print('Waiting for initial model from coordinator...')
+    logger.info('Waiting for initial model from coordinator...')
     
 def on_message(client,userdata, msg):
   try:
-    print("Model received from coordinator!")
-    print('Topic: ', msg.topic)
-    #print(msg.payload)
+    logger.info("Model received from coordinator!")
+    logger.info('Topic: ', msg.topic)
+    #logger.info(msg.payload)
     epoch_num = re.search('coordinator/(.+)/model', msg.topic).group(1)
     if epoch_num == 'exit':
-        print('Got EXIT from coordinator. Exiting...')
+        logger.info('Got EXIT from coordinator. Exiting...')
         os._exit(0)
     
     current_epoch = int(epoch_num)
@@ -234,10 +234,10 @@ def on_message(client,userdata, msg):
     buff = io.BytesIO(bytes(model_str))
     
     #model.load_state_dict(torch.load(buff))
-    #print('Model loading complete!')
+    #logger.info('Model loading complete!')
     train_and_send(buff, current_epoch)    
   except:
-    print("Unexpected error:", sys.exc_info())
+    logger.info("Unexpected error:", sys.exc_info())
 
 # Load the data
 train_loader, valid_loader = get_data_loaders()
