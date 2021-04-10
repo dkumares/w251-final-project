@@ -27,6 +27,7 @@ logger = get_logger(os.path.splitext(os.path.basename(__file__))[0], write_logs_
 LOCAL_MQTT_HOST="mqtt_brkr"
 LOCAL_MQTT_PORT=1883
 TRAINED_MODEL_TOPIC="fed_ml/+/model"
+TRAINED_LOSS_TOPIC="fed_ml/+/loss"
 REMOTE_TRAINER_TOPIC="fed_ml/coordinator/epoch_num/model"
 
 #NUM_TRAINERS = len(REMOTE_TRAINER_HOSTS)
@@ -35,8 +36,10 @@ batch_size = 1000
 TOTAL_EPOCHS = 10
 
 trainer_weights = []
+trainer_losses=[]
 remote_mqttclients = []
 accuracies = []
+losses = []
 
 data_file = '../data/IDS-2018-multiclass.csv'
 
@@ -190,6 +193,7 @@ def update_global_weights_and_send(weights):
     # TODO: Add end condition here
 
     # TODO: Plot accuracies
+    # TODO: Plot loss
     # TODO: accumulate losses from trainers
 
 def on_connect_local(client, userdata, flags, rc):
@@ -198,32 +202,42 @@ def on_connect_local(client, userdata, flags, rc):
 	
 def on_message(client,userdata, msg):
   try:
-    logger.info("Model from trainer received!")
-    logger.info('Topic: ', msg.topic)
-    #logger.info('Message: ', msg.payload)
-    
-    model_str = msg.payload
-    buff = io.BytesIO(bytes(model_str))
+    if msg.topic.contains('loss'):
+        logger.info("Loss from trainer received!")
+        logger.info('Topic: ', msg.topic)
+        global trainer_losses
+        trainer_losses.append(float(msg.payload))
+        
+        if len(trainer_losses) == NUM_TRAINERS:
+            losses.append(np.average(trainer_losses))
+            trainer_losses.clear()
+    else:
+        logger.info("Model from trainer received!")
+        logger.info('Topic: ', msg.topic)
+        #logger.info('Message: ', msg.payload)
 
-    # Create a dummy model to read weights
-    input_size=78
-    model = MLP(input_size)
-    model.load_state_dict(torch.load(buff))
-    
-    global trainer_weights
-    trainer_weights.append(copy.deepcopy(model.state_dict()))
-    
-    # Wait until we get trained weights from all trainers
-    if len(trainer_weights) == NUM_TRAINERS:
-        update_global_weights_and_send(trainer_weights)
-        trainer_weights.clear()
+        model_str = msg.payload
+        buff = io.BytesIO(bytes(model_str))
+
+        # Create a dummy model to read weights
+        input_size=78
+        model = MLP(input_size)
+        model.load_state_dict(torch.load(buff))
+
+        global trainer_weights
+        trainer_weights.append(copy.deepcopy(model.state_dict()))
+
+        # Wait until we get trained weights from all trainers
+        if len(trainer_weights) == NUM_TRAINERS:
+            update_global_weights_and_send(trainer_weights)
+            trainer_weights.clear()
 
   except:
     logger.info("Unexpected error:", sys.exc_info())
 
 # Connect to local broker to receive weights from trainers
 local_mqttclient = mqtt.Client()
-local_mqttclient.connect(LOCAL_MQTT_HOST, LOCAL_MQTT_PORT, 60)
+local_mqttclient.connect(LOCAL_MQTT_HOST, LOCAL_MQTT_PORT, 3600)
 local_mqttclient.on_connect = on_connect_local
 local_mqttclient.on_message = on_message
 
