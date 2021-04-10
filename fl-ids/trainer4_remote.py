@@ -84,7 +84,7 @@ def GetPyTorchDataLoaders(x_train, x_test, y_train, y_test, batch_size = 1000):
     train_loader = torch.utils.data.DataLoader(train, batch_size = batch_size, shuffle = True)
     valid_loader = torch.utils.data.DataLoader(valid, batch_size = batch_size, shuffle = True)
 
-    print('Completed loading data and returning pytorch train and validation data loaders')
+    logger.info('Completed loading data and returning pytorch train and validation data loaders')
     return train_loader, valid_loader
 
 def load_data():
@@ -110,15 +110,15 @@ def load_data():
     # Convert all categorical features into numerical form:
     encodings_dictionary = dict()
     for c in IDS_df.columns:
-     	if IDS_df[c].dtype == "object":
-     	   encodings_dictionary[c] = LabelEncoder()
-     	   IDS_df[c] = encodings_dictionary[c].fit_transform(IDS_df[c])
+        if IDS_df[c].dtype == "object":
+            encodings_dictionary[c] = LabelEncoder()
+            IDS_df[c] = encodings_dictionary[c].fit_transform(IDS_df[c])
 
     logger.info('Completed loading data')
     return IDS_df
 
 def train_model(model, optimizer, error, device, train, test, fold_no, current_epoch):
-    print('Start training...')
+    logger.info('Start training...')
     start_time = time.time()
 
     count = 0
@@ -212,8 +212,8 @@ def train_model(model, optimizer, error, device, train, test, fold_no, current_e
 
     end_time = time.time()
     
-    print('Epoch', current_epoch,' completed. Time taken (seconds): ', str(end_time - start_time))
-    print('Fold', str(fold_no), 'Accuracy for Epoch :', accuracy_epoch)
+    logger.info(f'Epoch {current_epoch} completed. Time taken (seconds): {str(end_time - start_time)}')
+    logger.info(f'Fold {str(fold_no)} Accuracy for Epoch: {accuracy_epoch}')
 
     return model, accuracy_epoch
    
@@ -233,7 +233,7 @@ def train_model_stratified(model, optimizer, error, device, current_epoch, IDS_d
         accuracy_scores.append(accuracy_score)
         fold_no += 1
         
-    print('Mean accuracy score across all cross validation sets', np.mean(accuracy_scores))
+    logger.info(f'Mean accuracy score across all cross validation sets {np.mean(accuracy_scores)}')
     return model
 
 
@@ -270,7 +270,7 @@ def on_connect_remote(client, userdata, flags, rc):
 def on_message(client,userdata, msg):
   try:
     logger.info("Model received from coordinator!")
-    logger.info('Topic: ', msg.topic)
+    logger.info(f'Topic: {str(msg.topic)}')
     #logger.info(msg.payload)
     epoch_num = re.search('coordinator/(.+)/model', msg.topic).group(1)
     if epoch_num == 'exit':
@@ -287,7 +287,7 @@ def on_message(client,userdata, msg):
     #logger.info('Model loading complete!')
     train_and_send(buff, current_epoch, IDS_df)    
   except:
-    logger.info("Unexpected error:", sys.exc_info())
+    logger.info(f"Unexpected error: {str(sys.exc_info())}")
 
 # Load the data
 #train_loader, valid_loader = get_data_loaders()

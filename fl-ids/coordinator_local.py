@@ -233,7 +233,7 @@ def on_message(client,userdata, msg):
             trainer_weights.clear()
 
   except:
-    logger.info("Unexpected error:", sys.exc_info())
+    logger.info(f"Unexpected error: {str(sys.exc_info())}")
 
 # Connect to local broker to receive weights from trainers
 local_mqttclient = mqtt.Client()
