@@ -41,7 +41,7 @@ remote_mqttclients = []
 accuracies = []
 losses = []
 
-data_file = '../data/IDS-2018-multiclass.csv'
+data_file = 'data/MINI-COORD-IDS-2018-multiclass.csv'
 
 input_size=78
 global_model = MLP(input_size)
@@ -199,12 +199,14 @@ def update_global_weights_and_send(weights):
 def on_connect_local(client, userdata, flags, rc):
     logger.info("Connected to local broker with rc: " + str(rc))
     client.subscribe(TRAINED_MODEL_TOPIC)
-	
+    client.subscribe(TRAINED_LOSS_TOPIC)
+
 def on_message(client,userdata, msg):
   try:
-    if msg.topic.contains('loss'):
+    if 'loss' in msg.topic:
         logger.info("Loss from trainer received!")
-        logger.info('Topic: ', msg.topic)
+        #logger.info('Topic: ', msg.topic)
+        print('Topic: ', msg.topic)
         global trainer_losses
         trainer_losses.append(float(msg.payload))
         
@@ -213,8 +215,9 @@ def on_message(client,userdata, msg):
             trainer_losses.clear()
     else:
         logger.info("Model from trainer received!")
-        logger.info('Topic: ', msg.topic)
+        #logger.info('Topic: ', msg.topic)
         #logger.info('Message: ', msg.payload)
+        print('Topic: ', msg.topic)
 
         model_str = msg.payload
         buff = io.BytesIO(bytes(model_str))
