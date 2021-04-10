@@ -32,8 +32,8 @@ REMOTE_MQTT_HOST="54.202.72.66" # Change this IP address to the public IP Addres
 REMOTE_MQTT_PORT=1883
 REMOTE_COORDINATOR_TOPIC="fed_ml/coordinator/+/model"
 
-batch_size = 1000
-data_file = 'data/MINI-TRAINER-03-IDS-2018-multiclass'
+batch_size = 10000
+data_file = 'data/02-16-2018-dos-slowhttp-hulk-small.csv'
 
 model_input_size = 78
 
@@ -216,7 +216,8 @@ def train_model(model, optimizer, error, device, train, test, fold_no, current_e
     logger.info(f'Epoch {current_epoch} completed. Time taken (seconds): {str(end_time - start_time)}')
     logger.info(f'Fold {str(fold_no)} Accuracy for Epoch: {accuracy_epoch}')
 
-    return model, accuracy_epoch, loss_list[-1]
+    print('\nLOSS::', loss_list[-1].to('cpu').item())
+    return model, accuracy_epoch, loss_list[-1].to('cpu').item()
    
 
 def train_model_stratified(model, optimizer, error, device, current_epoch, IDS_df):
@@ -224,7 +225,7 @@ def train_model_stratified(model, optimizer, error, device, current_epoch, IDS_d
     fold_no = 1
 
     seed = 1234
-    skf = StratifiedKFold(n_splits=5, shuffle=True, random_state = seed)
+    skf = StratifiedKFold(n_splits=2, shuffle=True, random_state = seed)
     target = IDS_df.loc[:,'label']
 
     for train_index, test_index in skf.split(IDS_df, target):
@@ -235,7 +236,7 @@ def train_model_stratified(model, optimizer, error, device, current_epoch, IDS_d
         fold_no += 1
 
     logger.info(f'Mean accuracy score across all cross validation sets {np.mean(accuracy_scores)}')
-    return model
+    return model, loss
 
 def train_and_send(global_model_weights, current_epoch, IDS_df):
     device = 'cpu'
