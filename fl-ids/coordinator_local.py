@@ -102,9 +102,9 @@ def get_test_dataloader():
     # Convert all categorical features into numerical form:
     encodings_dictionary = dict()
     for c in IDS_df.columns:
-     	if IDS_df[c].dtype == "object":
-     	   encodings_dictionary[c] = LabelEncoder()
-     	   IDS_df[c] = encodings_dictionary[c].fit_transform(IDS_df[c])
+        if IDS_df[c].dtype == "object":
+            encodings_dictionary[c] = LabelEncoder()
+            IDS_df[c] = encodings_dictionary[c].fit_transform(IDS_df[c])
 
     y_test = IDS_df.pop("label").values
     X_test = IDS_df.values
@@ -206,7 +206,7 @@ def on_message(client,userdata, msg):
     if 'loss' in msg.topic:
         logger.info("Loss from trainer received!")
         #logger.info('Topic: ', msg.topic)
-        print('Topic: ', msg.topic)
+        logger.info(f'Topic: {str(msg.topic)}')
         global trainer_losses
         trainer_losses.append(float(msg.payload))
         
@@ -217,7 +217,7 @@ def on_message(client,userdata, msg):
         logger.info("Model from trainer received!")
         #logger.info('Topic: ', msg.topic)
         #logger.info('Message: ', msg.payload)
-        print('Topic: ', msg.topic)
+        logger.info(f'Topic: {str(msg.topic)}')
 
         model_str = msg.payload
         buff = io.BytesIO(bytes(model_str))
