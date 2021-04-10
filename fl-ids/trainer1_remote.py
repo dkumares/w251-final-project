@@ -91,7 +91,7 @@ def GetPyTorchDataLoaders(x_train, x_test, y_train, y_test, batch_size = 1000):
 def load_data():
     logger.info('Loading data...')
     IDS_df = pd.read_csv(data_file)
-    IDS_df = IDS_df.drop('timestamp', axis=1)
+#     IDS_df = IDS_df.drop('timestamp', axis=1)
     
     '''
     # Finding the null values.
@@ -106,7 +106,7 @@ def load_data():
     logger.info(IDS_df.isin([np.nan, np.inf, -np.inf]).sum().sum())
     '''
 
-    IDS_df["label"] = IDS_df["label"].apply(get_label)
+#     IDS_df["label"] = IDS_df["label"].apply(get_label)
 
     # Convert all categorical features into numerical form:
     encodings_dictionary = dict()
@@ -216,7 +216,7 @@ def train_model(model, optimizer, error, device, train, test, fold_no, current_e
     logger.info(f'Epoch {current_epoch} completed. Time taken (seconds): {str(end_time - start_time)}')
     logger.info(f'Fold {str(fold_no)} Accuracy for Epoch: {accuracy_epoch}')
 
-    print('\nLOSS::', loss_list[-1].to('cpu').item())
+    logger.info(f"\nLOSS:: {str(loss_list[-1].to('cpu').item())}")
     return model, accuracy_epoch, loss_list[-1].to('cpu').item()
    
 

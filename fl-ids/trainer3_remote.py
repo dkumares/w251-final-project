@@ -26,13 +26,14 @@ from util.set_up_logger import get_logger
 logger = get_logger(os.path.splitext(os.path.basename(__file__))[0], write_logs_to_file=True, run_time=RUN_TIME)
 
 TRAINED_MODEL_TOPIC="fed_ml/trainer3/model"
+TRAINED_LOSS_TOPIC="fed_ml/trainer3/loss"
 
-REMOTE_MQTT_HOST="3.16.151.98" # Change this IP address to the public IP Address of your EC2 instance that acts as a coordinator"
+REMOTE_MQTT_HOST="54.202.72.66" # Change this IP address to the public IP Address of your EC2 instance that acts as a coordinator"
 REMOTE_MQTT_PORT=1883
 REMOTE_COORDINATOR_TOPIC="fed_ml/coordinator/+/model"
 
-batch_size = 1000
-data_file = 'data/MINI-TRAINER-03-IDS-2018-multiclass'
+batch_size = 10000
+data_file = 'data/02-16-2018-dos-slowhttp-hulk-small.csv'
 
 model_input_size = 78
 
@@ -90,7 +91,7 @@ def GetPyTorchDataLoaders(x_train, x_test, y_train, y_test, batch_size = 1000):
 def load_data():
     logger.info('Loading data...')
     IDS_df = pd.read_csv(data_file)
-    IDS_df = IDS_df.drop('timestamp', axis=1)
+#     IDS_df = IDS_df.drop('timestamp', axis=1)
     
     '''
     # Finding the null values.
@@ -105,7 +106,7 @@ def load_data():
     logger.info(IDS_df.isin([np.nan, np.inf, -np.inf]).sum().sum())
     '''
 
-    IDS_df["label"] = IDS_df["label"].apply(get_label)
+#     IDS_df["label"] = IDS_df["label"].apply(get_label)
 
     # Convert all categorical features into numerical form:
     encodings_dictionary = dict()
@@ -215,7 +216,8 @@ def train_model(model, optimizer, error, device, train, test, fold_no, current_e
     logger.info(f'Epoch {current_epoch} completed. Time taken (seconds): {str(end_time - start_time)}')
     logger.info(f'Fold {str(fold_no)} Accuracy for Epoch: {accuracy_epoch}')
 
-    return model, accuracy_epoch
+    logger.info(f"\nLOSS:: {str(loss_list[-1].to('cpu').item())}")
+    return model, accuracy_epoch, loss_list[-1].to('cpu').item()
    
 
 def train_model_stratified(model, optimizer, error, device, current_epoch, IDS_df):
@@ -223,19 +225,18 @@ def train_model_stratified(model, optimizer, error, device, current_epoch, IDS_d
     fold_no = 1
 
     seed = 1234
-    skf = StratifiedKFold(n_splits=5, shuffle=True, random_state = seed)
+    skf = StratifiedKFold(n_splits=2, shuffle=True, random_state = seed)
     target = IDS_df.loc[:,'label']
 
     for train_index, test_index in skf.split(IDS_df, target):
         train = IDS_df.loc[train_index,:]
         test = IDS_df.loc[test_index,:]
-        model, accuracy_score = train_model(model, optimizer, error, device, train, test, fold_no, current_epoch)
+        model, accuracy_score, loss = train_model(model, optimizer, error, device, train, test, fold_no, current_epoch)
         accuracy_scores.append(accuracy_score)
         fold_no += 1
-        
-    logger.info(f'Mean accuracy score across all cross validation sets {np.mean(accuracy_scores)}')
-    return model
 
+    logger.info(f'Mean accuracy score across all cross validation sets {np.mean(accuracy_scores)}')
+    return model, loss
 
 def train_and_send(global_model_weights, current_epoch, IDS_df):
     device = 'cpu'
@@ -255,12 +256,13 @@ def train_and_send(global_model_weights, current_epoch, IDS_df):
     learning_rate = 0.001
     optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate, weight_decay=0.01)
 
-    model = train_model_stratified(model, optimizer, error, device, current_epoch, IDS_df)
+    model, loss = train_model_stratified(model, optimizer, error, device, current_epoch, IDS_df)
     
     # Encode model weights and send
     model.to('cpu')
     model_str = encode_weights(model)
     remote_mqttclient.publish(TRAINED_MODEL_TOPIC, payload=model_str, qos=2, retain=False)    
+    remote_mqttclient.publish(TRAINED_LOSS_TOPIC, payload=str(loss), qos=2, retain=False)
     
 def on_connect_remote(client, userdata, flags, rc):
     logger.info("Connected to remote broker with rc: " + str(rc))
@@ -294,7 +296,7 @@ def on_message(client,userdata, msg):
 IDS_df = load_data()
 
 remote_mqttclient = mqtt.Client()
-remote_mqttclient.connect(REMOTE_MQTT_HOST, REMOTE_MQTT_PORT, 60)
+remote_mqttclient.connect(REMOTE_MQTT_HOST, REMOTE_MQTT_PORT, 3600)
 remote_mqttclient.on_connect = on_connect_remote
 remote_mqttclient.on_message = on_message
 

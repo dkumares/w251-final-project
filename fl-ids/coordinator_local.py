@@ -42,6 +42,7 @@ accuracies = []
 losses = []
 
 data_file = 'data/MINI-COORD-IDS-2018-multiclass.csv'
+model_file = 'data/global_model.pkl'
 
 input_size=78
 global_model = MLP(input_size)
@@ -177,6 +178,14 @@ def update_global_weights_and_send(weights):
     if current_epoch == TOTAL_EPOCHS:
         logger.info('Sending EXIT to all trainers...')
         topic = REMOTE_TRAINER_TOPIC.replace('epoch_num', 'exit')
+        
+        accuracies_df = pd.DataFrame(accuracies, columns=['accuracy'])
+        accuracies_df.to_csv('data/accuracy.csv', index=False)
+        
+        losses_df = pd.DataFrame(losses, columns=['loss'])
+        losses_df.to_csv('data/loss.csv', index=False)
+        
+        torch.save(global_model, model_file)
  
         local_mqttclient.publish(topic, payload='bye', qos=2, retain=False)
         logger.info('Training Complete!')
