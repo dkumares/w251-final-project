@@ -216,7 +216,7 @@ def train_model(model, optimizer, error, device, train, test, fold_no, current_e
     logger.info(f'Epoch {current_epoch} completed. Time taken (seconds): {str(end_time - start_time)}')
     logger.info(f'Fold {str(fold_no)} Accuracy for Epoch: {accuracy_epoch}')
 
-    print('\nLOSS::', loss_list[-1].to('cpu').item())
+    logger.info(f"\nLOSS:: {str(loss_list[-1].to('cpu').item())}")
     return model, accuracy_epoch, loss_list[-1].to('cpu').item()
    
 
