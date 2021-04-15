@@ -10,3 +10,10 @@ As such it addresses -
  - **Lower Latency**: Updated model can be used to make predictions on device. 
  - **Decentralized Learning**: Gain experience from a broad diverse range of datasets. 
  - **Reduced Communication Overheads**: Only model weights are sent to the server not raw data.
+
+## Links
+[Presentation Slides](files/W251-FINAL-IntrusionDetectionUsingFedML.pdf)
+**Add link to our paper**
+
+## System Architecture
+![system architecture](files/system_architecture.png)
