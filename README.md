@@ -34,3 +34,6 @@ To run this setup:
 
 The model will train for the number of epochs specified in the coordinator and will exit.
 
+## Experimental Results
+![exp_result](files/experimental_results.png)
+
