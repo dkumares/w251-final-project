@@ -12,8 +12,11 @@ As such it addresses -
  - **Reduced Communication Overheads**: Only model weights are sent to the server not raw data.
 
 ## Links
-[Presentation Slides](files/W251-FINAL-IntrusionDetectionUsingFedML.pdf)
+[Presentation Slides](files/W251-FINAL-IntrusionDetectionUsingFedML.pdf)  
 **Add link to our paper**
 
 ## System Architecture
 ![system architecture](files/system_architecture.png)
+
+## Model Architecture
+![model_architecture](files/model_architecture.png)
