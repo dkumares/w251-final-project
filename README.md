@@ -46,6 +46,22 @@ To run this setup:
 
 The model will train for the specified number of epochs specified in the coordinator and will exit.
 
+## Training Demo
+
+A video demo run on three NVIDIA Jetson devices using stub data can be found [here](files/fl_training_demo.mov). The video shows the end-to-end training process, from starting the broker and trainers to the shutdown call sent by the coordinator to signal the end of the training process. 
+
+### Relevant Timestamps
+
+* [0:07]: Starting the Paho MQTT broker on the cloud EC2 instance
+* [0:22]: Starting trainers 1 through 3 on their corresponding Jetson devices
+    * At this point, the trainers will weight for the coordinator to pass the initial common weights
+* [0:36]: Starting the coordinator on the cloud EC2 instance
+    * The coordinator initializes the common weights and passes the weights to the trainers via MQTT
+* [0:58]: Trainers receive the weights and begins training for five global epochs
+    * At the end of each epoch, the trainers pass the weights back to the coordinator, and will receive the new federated averaged weights to begin a new epoch of training
+* [2:41]: The coordinate sends the exit signal to all trainers when the five global epochs are completed
+
+
 ## Experimental Results
 
 **Loss Charts**
