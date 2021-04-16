@@ -33,17 +33,18 @@ As such it addresses -
 ![eda_training_setup](files/eda_training_setup.png)
 
 ## Setup
-To run this setup:
-1. Spin up a EC2 instance
-2. Run [start_mqtt_brkr.sh](fl-ids/start_mqtt_brkr.sh) to start the MQTT broker on it.
-3. Run this [start_aws_coordinator.sh](fl-ids/start_aws_coordinator.sh) to start the coordinator on the EC2 instance.
-4. On each of the Jetson NX, run [start_jetson_docker.sh](start_aws_coordinator.sh) to get the required setup.
-5. Download the training data on each of the Jetson devices and test data on the EC2 instance.
-6. Modify corresponding trainer scripts [fl-ids/trainer1_remote.py](fl-ids/trainer1_remote.py) to point to the respective data locations on all four Jetson devices.
-7. Inside the docker containers in each of the Jetson devices, run `python3 fl-ids/trainer1_remote.py`
-8. After all the trainers say "Waiting for model from coordinator...", run `python3 fl-ids/coordinator_local.py` on the coordinator container in the EC2 instance.
+Pre-requisites: One EC2 instance for the coordinator and 'N' edge devices (e.g. Jetsons) for the trainers.
 
-The model will train for the number of epochs specified in the coordinator and will exit.
+To run this setup:
+1. Run [start_mqtt_brkr.sh](fl-ids/start_mqtt_brkr.sh) to start the MQTT broker on the EC2 instance.
+2. Run [start_aws_coordinator.sh](fl-ids/start_aws_coordinator.sh) to start the coordinator on the EC2 instance.
+3. On each edge device (Jetson NX), run [start_jetson_docker.sh](start_aws_coordinator.sh) to do the required setup.
+4. Download the training data on each of the edge devices and the test data on the EC2 instance.
+5. Modify corresponding trainer scripts [fl-ids/trainer1_remote.py](fl-ids/trainer1_remote.py) to point to the respective data locations on all four edge devices.
+6. Inside the docker containers in each of the edge device, run `python3 fl-ids/trainer1_remote.py`
+7. Once all the trainers display a message "Waiting for model from coordinator...", run the `python3 fl-ids/coordinator_local.py` on the coordinator container in the EC2 instance.
+
+The model will train for the specified number of epochs specified in the coordinator and will exit.
 
 ## Experimental Results
 ![exp_result](files/experimental_results.png)
