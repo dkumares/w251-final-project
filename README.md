@@ -26,6 +26,12 @@ As such it addresses -
 ## Model Architecture
 ![model_architecture](files/model_architecture.png)
 
+## Dataset Characteristics
+![dataset_characteristics](files/dataset_characteristics.png)
+
+## EDA & Training Data Setup
+![eda_training_setup](files/eda_training_setup.png)
+
 ## Setup
 To run this setup:
 1. Spin up a EC2 instance
