@@ -42,32 +42,25 @@ def get_label(text):
         return 0
     elif text == 'Infilteration':
         return 1
-    elif text == 'DoS attacks-Slowloris':
-        return 2
     elif text == 'SSH-Bruteforce':
-        return 3
+        return 2
     elif text == 'DDOS attack-HOIC':
-        return 4
+        return 3
     elif text == 'FTP-BruteForce':
-        return 5
+        return 4
     elif text == 'DoS attacks-SlowHTTPTest':
-        return 6
+        return 5
     elif text == 'Bot':
-        return 7
+        return 6
     elif text == 'DoS attacks-Hulk':
-        return 8
+        return 7
     elif text == 'DoS attacks-GoldenEye':
-        return 9
+        return 8
     elif text == 'DDoS attacks-LOIC-HTTP':
+        return 9 
+    else :
         return 10
-    elif text == 'DDOS attack-LOIC-UDP':
-        return 11
-    elif text == 'Brute Force -Web':
-        return 12
-    elif text == 'Brute Force -XSS':
-        return 13
-    elif text == 'SQL Injection':
-        return 14
+
 
 def GetPyTorchDataLoaders(x_train, x_test, y_train, y_test, batch_size):
     # Pytorch
@@ -90,18 +83,7 @@ def GetPyTorchDataLoaders(x_train, x_test, y_train, y_test, batch_size):
 
 def load_data():
     logger.info('Loading data...')
-    IDS_df = pd.read_csv(data_file)
-    
-    # Finding the null values.
-    logger.info(IDS_df.isin([np.nan, np.inf, -np.inf]).sum().sum())
-    IDS_df = IDS_df.replace([np.inf, -np.inf], np.nan)
-    # logger.info shape after dropping NaN rows
-    IDS_df = IDS_df.dropna()
-    logger.info(IDS_df.shape)
-    IDS_df = IDS_df.reset_index(drop=True)
-
-    # Finding the null values.
-    logger.info(IDS_df.isin([np.nan, np.inf, -np.inf]).sum().sum())
+    IDS_df = pd.read_csv(data_file)   
 
     # Convert all categorical features into numerical form:
     encodings_dictionary = dict()
@@ -250,8 +232,8 @@ def train_and_send(global_model_weights, current_epoch, IDS_df):
     error = nn.CrossEntropyLoss().to(device)
 
     # Adam Optimizer
-    learning_rate = 0.001
-    optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate, weight_decay=0.01)
+    learning_rate = 0.0001
+    optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
 
     #model, loss = train_model_stratified(model, optimizer, error, device, current_epoch, IDS_df)
     model, loss = train_model(model, optimizer, error, device, current_epoch, IDS_df)

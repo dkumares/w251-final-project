@@ -37,6 +37,7 @@ data_file = 'data/TRAIN-1-DATA-IDS-2018-multiclass-bootstrap.csv'
 
 model_input_size = 78
 
+'''
 def get_label(text):    
     if text == "Benign":
         return 0
@@ -68,6 +69,31 @@ def get_label(text):
         return 13
     elif text == 'SQL Injection':
         return 14
+'''
+
+def get_label(text):    
+    if text == "Benign":
+        return 0
+    elif text == 'Infilteration':
+        return 1
+    elif text == 'SSH-Bruteforce':
+        return 2
+    elif text == 'DDOS attack-HOIC':
+        return 3
+    elif text == 'FTP-BruteForce':
+        return 4
+    elif text == 'DoS attacks-SlowHTTPTest':
+        return 5
+    elif text == 'Bot':
+        return 6
+    elif text == 'DoS attacks-Hulk':
+        return 7
+    elif text == 'DoS attacks-GoldenEye':
+        return 8
+    elif text == 'DDoS attacks-LOIC-HTTP':
+        return 9 
+    else :
+        return 10
 
 def GetPyTorchDataLoaders(x_train, x_test, y_train, y_test, batch_size):
     # Pytorch
@@ -92,6 +118,7 @@ def load_data():
     logger.info('Loading data...')
     IDS_df = pd.read_csv(data_file)
     
+    '''
     # Finding the null values.
     logger.info(IDS_df.isin([np.nan, np.inf, -np.inf]).sum().sum())
     IDS_df = IDS_df.replace([np.inf, -np.inf], np.nan)
@@ -102,6 +129,7 @@ def load_data():
 
     # Finding the null values.
     logger.info(IDS_df.isin([np.nan, np.inf, -np.inf]).sum().sum())
+    '''
 
     # Convert all categorical features into numerical form:
     encodings_dictionary = dict()
@@ -250,8 +278,8 @@ def train_and_send(global_model_weights, current_epoch, IDS_df):
     error = nn.CrossEntropyLoss().to(device)
 
     # Adam Optimizer
-    learning_rate = 0.001
-    optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate, weight_decay=0.01)
+    learning_rate = 0.0001
+    optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
 
     #model, loss = train_model_stratified(model, optimizer, error, device, current_epoch, IDS_df)
     model, loss = train_model(model, optimizer, error, device, current_epoch, IDS_df)
