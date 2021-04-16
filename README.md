@@ -1,5 +1,10 @@
 
 # W251 - Intrusion Detection with Federated Averaging
+
+**Cybersecurity** has always been a field of cat-and-mouse games: defenders and attackers are constantly trying to stay one step ahead of the other in an effort to further their objectives, malicious or not. In the 21st century, there is no more a concept of "network perimeter" with organizations allowing Bring Your Own Data (BYOD), or hosting sensitive data on the cloud, which can be accessed from an authenticated computer or mobile device anywhere in the world. This immensely increases the attack surface, and to catch hackers in this domain, host and network intrusion detection using machine learning to identify anomalous behavior has proven to be very effective. 
+  
+The growth in the number of network connected devices (mobile phones, vehicles, IOT Appliances, etc.) has exponentially increased the volumes and sensitivity of network traffic data. This presents an additional challenge in building machine learning for anomaly detection which we aim to tackle using Federated Learning. 
+
 **Federated learning (FL)** is a setting where many clients (e.g. edge devices like cell phones, Jetsons, or Amazon Echo)  collaboratively train a model under the orchestration of a central server, while keeping the training data decentralized. 
 
 With Federated learning (FL), you download the current model to your edge device, compute an updated model at the device itself using local data and you upload the details back to the Global Model.
