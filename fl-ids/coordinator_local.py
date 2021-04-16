@@ -14,6 +14,9 @@ from utils import *
 from conf import RUN_TIME
 from sklearn.preprocessing import LabelEncoder
 from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
+from sklearn.metrics import confusion_matrix
+from sklearn.metrics import f1_score
 import copy
 
 CURRENT_DIR = os.path.dirname(os.path.realpath(__file__))
@@ -53,32 +56,24 @@ def get_label(text):
         return 0
     elif text == 'Infilteration':
         return 1
-    elif text == 'DoS attacks-Slowloris':
-        return 2
     elif text == 'SSH-Bruteforce':
-        return 3
+        return 2
     elif text == 'DDOS attack-HOIC':
-        return 4
+        return 3
     elif text == 'FTP-BruteForce':
-        return 5
+        return 4
     elif text == 'DoS attacks-SlowHTTPTest':
-        return 6
+        return 5
     elif text == 'Bot':
-        return 7
+        return 6
     elif text == 'DoS attacks-Hulk':
-        return 8
+        return 7
     elif text == 'DoS attacks-GoldenEye':
-        return 9
+        return 8
     elif text == 'DDoS attacks-LOIC-HTTP':
+        return 9 
+    else :
         return 10
-    elif text == 'DDOS attack-LOIC-UDP':
-        return 11
-    elif text == 'Brute Force -Web':
-        return 12
-    elif text == 'Brute Force -XSS':
-        return 13
-    elif text == 'SQL Injection':
-        return 14
 
 def get_test_dataloader():
     logger.info('Loading test data...')
@@ -157,6 +152,11 @@ def update_global_weights_and_send(weights):
     global_model.eval()
     total = 0
     correct = 0
+
+    # Aggregate all predictions in this torch tensor 
+    all_labels = []
+    all_predictions = []
+
     for test_data, labels in test_loader:
         # Forward propagation
         outputs = global_model(test_data)
@@ -168,12 +168,21 @@ def update_global_weights_and_send(weights):
         total += len(labels)
         correct += (predicted == labels).sum()
 
+        all_predictions.append(predicted)
+        all_labels.append(labels)
+
     accuracy = 100 * correct / float(total)
     accuracies.append(accuracy)
     
     global current_epoch 
 
     logger.info('Epoch: {} Accuracy: {} %'.format(current_epoch, accuracy))
+
+    f1_score_per_class = f1_score(all_labels, all_predictions, average=None)
+    print('f1_score_per_class :  ', f1_score_per_class)
+
+    f1_score_weighted_average = f1_score(all_labels, all_predictions, average='weighted')
+    print('f1_score_weighted_average :  ', f1_score_weighted_average)
     
     if current_epoch == TOTAL_EPOCHS:
         logger.info('Sending EXIT to all trainers...')
