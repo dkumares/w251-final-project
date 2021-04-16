@@ -21,16 +21,16 @@ As such it addresses -
 **Add link to our paper**
 
 ## System Architecture
-![system architecture](files/system_architecture.png)
+![system architecture](files/system_architecture.png =600X338)
 
 ## Model Architecture
-![model_architecture](files/model_architecture.png)
+![model_architecture](files/model_architecture.png =600X338)
 
 ## Dataset Characteristics
-![dataset_characteristics](files/dataset_characteristics.png)
+![dataset_characteristics](files/dataset_characteristics.png =600X338)
 
 ## EDA & Training Data Setup
-![eda_training_setup](files/eda_training_setup.png)
+![eda_training_setup](files/eda_training_setup.png =600X338)
 
 ## Setup
 To run this setup:
