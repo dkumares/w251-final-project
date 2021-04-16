@@ -47,5 +47,8 @@ To run this setup:
 The model will train for the specified number of epochs specified in the coordinator and will exit.
 
 ## Experimental Results
-![exp_result](files/experimental_results.png)
+**Loss Charts**
+![loss_charts](files/loss_charts.png)
 
+**Accuracy Charts**
+![accuracy_charts](files/accuracy_charts.png)
