@@ -18,7 +18,7 @@ As such it addresses -
 
 ## Links
 [Presentation Slides](files/W251-FINAL-IntrusionDetectionUsingFedML.pdf)  
-**Add link to our paper**
+[White Paper](files/Intrusion_Detection_Using_Federated_Learning.pdf)
 
 ## System Architecture
 ![system architecture](files/system_architecture.png)
