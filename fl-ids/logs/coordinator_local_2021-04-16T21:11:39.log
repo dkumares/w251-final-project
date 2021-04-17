@@ -1,0 +1,73 @@
+2021-04-16 21:11:39,005 - coordinator_local - INFO: [coordinator_local.py:get_test_dataloader:79] - Loading test data...
+2021-04-16 21:11:52,638 - coordinator_local - INFO: [coordinator_local.py:get_test_dataloader:118] - Completed loading data
+2021-04-16 21:11:52,642 - coordinator_local - INFO: [coordinator_local.py:send_initial_model:135] - Sending initial model to trainers...
+2021-04-16 21:11:52,643 - coordinator_local - INFO: [coordinator_local.py:on_connect_local:218] - Connected to local broker with rc: 0
+2021-04-16 21:33:47,775 - coordinator_local - INFO: [coordinator_local.py:on_message:235] - Model from trainer received!
+2021-04-16 21:33:47,775 - coordinator_local - INFO: [coordinator_local.py:on_message:238] - Topic: fed_ml/trainer1/model
+2021-04-16 21:33:47,777 - coordinator_local - INFO: [coordinator_local.py:on_message:225] - Loss from trainer received!
+2021-04-16 21:33:47,777 - coordinator_local - INFO: [coordinator_local.py:on_message:227] - Topic: fed_ml/trainer1/loss
+2021-04-16 21:34:19,510 - coordinator_local - INFO: [coordinator_local.py:on_message:235] - Model from trainer received!
+2021-04-16 21:34:19,511 - coordinator_local - INFO: [coordinator_local.py:on_message:238] - Topic: fed_ml/trainer1/model
+2021-04-16 21:34:19,512 - coordinator_local - INFO: [coordinator_local.py:on_message:225] - Loss from trainer received!
+2021-04-16 21:34:19,512 - coordinator_local - INFO: [coordinator_local.py:on_message:227] - Topic: fed_ml/trainer1/loss
+2021-04-16 21:35:34,053 - coordinator_local - INFO: [coordinator_local.py:on_message:235] - Model from trainer received!
+2021-04-16 21:35:34,053 - coordinator_local - INFO: [coordinator_local.py:on_message:238] - Topic: fed_ml/trainer1/model
+2021-04-16 21:35:53,469 - coordinator_local - INFO: [coordinator_local.py:update_global_weights_and_send:179] - Epoch: 1 Accuracy: 82.79615020751953 %
+2021-04-16 21:35:53,469 - coordinator_local - INFO: [coordinator_local.py:update_global_weights_and_send:208] - Sending updated model to trainers...
+2021-04-16 21:35:53,470 - coordinator_local - INFO: [coordinator_local.py:on_message:225] - Loss from trainer received!
+2021-04-16 21:35:53,470 - coordinator_local - INFO: [coordinator_local.py:on_message:227] - Topic: fed_ml/trainer1/loss
+2021-04-16 21:57:52,351 - coordinator_local - INFO: [coordinator_local.py:on_message:235] - Model from trainer received!
+2021-04-16 21:57:52,351 - coordinator_local - INFO: [coordinator_local.py:on_message:238] - Topic: fed_ml/trainer1/model
+2021-04-16 21:57:52,353 - coordinator_local - INFO: [coordinator_local.py:on_message:225] - Loss from trainer received!
+2021-04-16 21:57:52,353 - coordinator_local - INFO: [coordinator_local.py:on_message:227] - Topic: fed_ml/trainer1/loss
+2021-04-16 21:58:18,279 - coordinator_local - INFO: [coordinator_local.py:on_message:235] - Model from trainer received!
+2021-04-16 21:58:18,279 - coordinator_local - INFO: [coordinator_local.py:on_message:238] - Topic: fed_ml/trainer1/model
+2021-04-16 21:58:18,281 - coordinator_local - INFO: [coordinator_local.py:on_message:225] - Loss from trainer received!
+2021-04-16 21:58:18,281 - coordinator_local - INFO: [coordinator_local.py:on_message:227] - Topic: fed_ml/trainer1/loss
+2021-04-16 21:59:32,887 - coordinator_local - INFO: [coordinator_local.py:on_message:235] - Model from trainer received!
+2021-04-16 21:59:32,887 - coordinator_local - INFO: [coordinator_local.py:on_message:238] - Topic: fed_ml/trainer1/model
+2021-04-16 21:59:52,321 - coordinator_local - INFO: [coordinator_local.py:update_global_weights_and_send:179] - Epoch: 2 Accuracy: 83.02041625976562 %
+2021-04-16 21:59:52,322 - coordinator_local - INFO: [coordinator_local.py:update_global_weights_and_send:208] - Sending updated model to trainers...
+2021-04-16 21:59:52,323 - coordinator_local - INFO: [coordinator_local.py:on_message:225] - Loss from trainer received!
+2021-04-16 21:59:52,323 - coordinator_local - INFO: [coordinator_local.py:on_message:227] - Topic: fed_ml/trainer1/loss
+2021-04-16 22:21:52,388 - coordinator_local - INFO: [coordinator_local.py:on_message:235] - Model from trainer received!
+2021-04-16 22:21:52,388 - coordinator_local - INFO: [coordinator_local.py:on_message:238] - Topic: fed_ml/trainer1/model
+2021-04-16 22:21:52,390 - coordinator_local - INFO: [coordinator_local.py:on_message:225] - Loss from trainer received!
+2021-04-16 22:21:52,390 - coordinator_local - INFO: [coordinator_local.py:on_message:227] - Topic: fed_ml/trainer1/loss
+2021-04-16 22:22:43,463 - coordinator_local - INFO: [coordinator_local.py:on_message:235] - Model from trainer received!
+2021-04-16 22:22:43,464 - coordinator_local - INFO: [coordinator_local.py:on_message:238] - Topic: fed_ml/trainer1/model
+2021-04-16 22:22:43,465 - coordinator_local - INFO: [coordinator_local.py:on_message:225] - Loss from trainer received!
+2021-04-16 22:22:43,466 - coordinator_local - INFO: [coordinator_local.py:on_message:227] - Topic: fed_ml/trainer1/loss
+2021-04-16 22:23:34,281 - coordinator_local - INFO: [coordinator_local.py:on_message:235] - Model from trainer received!
+2021-04-16 22:23:34,281 - coordinator_local - INFO: [coordinator_local.py:on_message:238] - Topic: fed_ml/trainer1/model
+2021-04-16 22:23:54,329 - coordinator_local - INFO: [coordinator_local.py:update_global_weights_and_send:179] - Epoch: 3 Accuracy: 83.0096206665039 %
+2021-04-16 22:23:54,330 - coordinator_local - INFO: [coordinator_local.py:update_global_weights_and_send:208] - Sending updated model to trainers...
+2021-04-16 22:23:54,331 - coordinator_local - INFO: [coordinator_local.py:on_message:225] - Loss from trainer received!
+2021-04-16 22:23:54,331 - coordinator_local - INFO: [coordinator_local.py:on_message:227] - Topic: fed_ml/trainer1/loss
+2021-04-16 22:45:54,472 - coordinator_local - INFO: [coordinator_local.py:on_message:235] - Model from trainer received!
+2021-04-16 22:45:54,472 - coordinator_local - INFO: [coordinator_local.py:on_message:238] - Topic: fed_ml/trainer1/model
+2021-04-16 22:45:54,474 - coordinator_local - INFO: [coordinator_local.py:on_message:225] - Loss from trainer received!
+2021-04-16 22:45:54,474 - coordinator_local - INFO: [coordinator_local.py:on_message:227] - Topic: fed_ml/trainer1/loss
+2021-04-16 22:46:42,232 - coordinator_local - INFO: [coordinator_local.py:on_message:235] - Model from trainer received!
+2021-04-16 22:46:42,232 - coordinator_local - INFO: [coordinator_local.py:on_message:238] - Topic: fed_ml/trainer1/model
+2021-04-16 22:46:42,234 - coordinator_local - INFO: [coordinator_local.py:on_message:225] - Loss from trainer received!
+2021-04-16 22:46:42,234 - coordinator_local - INFO: [coordinator_local.py:on_message:227] - Topic: fed_ml/trainer1/loss
+2021-04-16 22:47:30,553 - coordinator_local - INFO: [coordinator_local.py:on_message:235] - Model from trainer received!
+2021-04-16 22:47:30,553 - coordinator_local - INFO: [coordinator_local.py:on_message:238] - Topic: fed_ml/trainer1/model
+2021-04-16 22:47:50,780 - coordinator_local - INFO: [coordinator_local.py:update_global_weights_and_send:179] - Epoch: 4 Accuracy: 82.87683868408203 %
+2021-04-16 22:47:50,781 - coordinator_local - INFO: [coordinator_local.py:update_global_weights_and_send:208] - Sending updated model to trainers...
+2021-04-16 22:47:50,782 - coordinator_local - INFO: [coordinator_local.py:on_message:225] - Loss from trainer received!
+2021-04-16 22:47:50,782 - coordinator_local - INFO: [coordinator_local.py:on_message:227] - Topic: fed_ml/trainer1/loss
+2021-04-16 23:09:49,159 - coordinator_local - INFO: [coordinator_local.py:on_message:235] - Model from trainer received!
+2021-04-16 23:09:49,159 - coordinator_local - INFO: [coordinator_local.py:on_message:238] - Topic: fed_ml/trainer1/model
+2021-04-16 23:09:49,161 - coordinator_local - INFO: [coordinator_local.py:on_message:225] - Loss from trainer received!
+2021-04-16 23:09:49,161 - coordinator_local - INFO: [coordinator_local.py:on_message:227] - Topic: fed_ml/trainer1/loss
+2021-04-16 23:10:26,544 - coordinator_local - INFO: [coordinator_local.py:on_message:235] - Model from trainer received!
+2021-04-16 23:10:26,545 - coordinator_local - INFO: [coordinator_local.py:on_message:238] - Topic: fed_ml/trainer1/model
+2021-04-16 23:10:26,546 - coordinator_local - INFO: [coordinator_local.py:on_message:225] - Loss from trainer received!
+2021-04-16 23:10:26,546 - coordinator_local - INFO: [coordinator_local.py:on_message:227] - Topic: fed_ml/trainer1/loss
+2021-04-16 23:11:30,236 - coordinator_local - INFO: [coordinator_local.py:on_message:235] - Model from trainer received!
+2021-04-16 23:11:30,236 - coordinator_local - INFO: [coordinator_local.py:on_message:238] - Topic: fed_ml/trainer1/model
+2021-04-16 23:11:50,434 - coordinator_local - INFO: [coordinator_local.py:update_global_weights_and_send:179] - Epoch: 5 Accuracy: 82.90512084960938 %
+2021-04-16 23:11:50,434 - coordinator_local - INFO: [coordinator_local.py:update_global_weights_and_send:188] - Sending EXIT to all trainers...
+2021-04-16 23:11:50,445 - coordinator_local - INFO: [coordinator_local.py:update_global_weights_and_send:200] - Training Complete!

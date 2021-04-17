@@ -34,9 +34,9 @@ TRAINED_LOSS_TOPIC="fed_ml/+/loss"
 REMOTE_TRAINER_TOPIC="fed_ml/coordinator/epoch_num/model"
 
 #NUM_TRAINERS = len(REMOTE_TRAINER_HOSTS)
-NUM_TRAINERS = 1
-batch_size = 1000
-TOTAL_EPOCHS = 10
+NUM_TRAINERS = 3
+batch_size = 20000
+TOTAL_EPOCHS = 5
 
 trainer_weights = []
 trainer_losses=[]
@@ -44,7 +44,7 @@ remote_mqttclients = []
 accuracies = []
 losses = []
 
-data_file = 'data/MINI-COORD-IDS-2018-multiclass.csv'
+data_file = 'data/TEST--DATA-IDS-2018-multiclass.csv'
 model_file = 'data/global_model.pkl'
 
 input_size=78
@@ -78,7 +78,7 @@ def get_label(text):
 def get_test_dataloader():
     logger.info('Loading test data...')
     IDS_df = pd.read_csv(data_file)
-    IDS_df = IDS_df.drop('timestamp', axis=1)
+    #IDS_df = IDS_df.drop('timestamp', axis=1)
 
     '''    
     # Finding the null values.
@@ -178,11 +178,11 @@ def update_global_weights_and_send(weights):
 
     logger.info('Epoch: {} Accuracy: {} %'.format(current_epoch, accuracy))
 
-    f1_score_per_class = f1_score(all_labels, all_predictions, average=None)
-    print('f1_score_per_class :  ', f1_score_per_class)
+    #f1_score_per_class = f1_score(all_labels, all_predictions, average=None)
+    #logger.info('f1_score_per_class : {} %'.format(f1_score_per_class))
 
-    f1_score_weighted_average = f1_score(all_labels, all_predictions, average='weighted')
-    print('f1_score_weighted_average :  ', f1_score_weighted_average)
+    #f1_score_weighted_average = f1_score(all_labels, all_predictions, average='weighted')
+    #logger.info('f1_score_weighted_average : {} %'.format(f1_score_weighted_average))
     
     if current_epoch == TOTAL_EPOCHS:
         logger.info('Sending EXIT to all trainers...')
