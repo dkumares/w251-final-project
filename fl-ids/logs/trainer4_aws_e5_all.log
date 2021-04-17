@@ -1,0 +1,160 @@
+2021-04-16 19:41:00,039 - trainer4_aws - INFO: [trainer4_aws.py:load_data:84] - Loading data...
+2021-04-16 19:41:40,644 - trainer4_aws - INFO: [trainer4_aws.py:load_data:94] - Completed loading data
+2021-04-16 19:41:52,134 - trainer4_aws - INFO: [trainer4_aws.py:GetPyTorchDataLoaders:80] - Completed loading data and returning pytorch train and validation data loaders
+2021-04-16 19:41:52,143 - trainer4_aws - INFO: [trainer4_aws.py:on_connect_remote:247] - Connected to remote broker with rc: 0
+2021-04-16 19:41:52,143 - trainer4_aws - INFO: [trainer4_aws.py:on_connect_remote:249] - Waiting for initial model from coordinator...
+2021-04-16 19:42:09,963 - trainer4_aws - INFO: [trainer4_aws.py:on_message:253] - Model received from coordinator!
+2021-04-16 19:42:09,964 - trainer4_aws - INFO: [trainer4_aws.py:on_message:254] - Topic: fed_ml/coordinator/1/model
+2021-04-16 19:42:09,998 - trainer4_aws - INFO: [trainer4_aws.py:train_model:99] - Start training...
+2021-04-16 19:42:26,282 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:1 Iteration: 0  Loss: 669425.5  Accuracy: 10.532848358154297 %
+2021-04-16 19:42:44,504 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:1 Iteration: 10  Loss: 120230.78125  Accuracy: 20.12226676940918 %
+2021-04-16 19:43:02,770 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:1 Iteration: 20  Loss: 8780.3779296875  Accuracy: 51.233943939208984 %
+2021-04-16 19:43:21,034 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:1 Iteration: 30  Loss: 4422.43017578125  Accuracy: 59.298553466796875 %
+2021-04-16 19:43:39,261 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:1 Iteration: 40  Loss: 4767.09423828125  Accuracy: 40.483341217041016 %
+2021-04-16 19:43:57,693 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:1 Iteration: 50  Loss: 4342.86181640625  Accuracy: 63.174381256103516 %
+2021-04-16 19:44:16,206 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:1 Iteration: 60  Loss: 3400.997314453125  Accuracy: 60.113319396972656 %
+2021-04-16 19:44:34,588 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:1 Iteration: 70  Loss: 3137.485107421875  Accuracy: 72.27788543701172 %
+2021-04-16 19:44:53,072 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:1 Iteration: 80  Loss: 3058.376708984375  Accuracy: 59.819400787353516 %
+2021-04-16 19:45:11,483 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:1 Iteration: 90  Loss: 2868.1513671875  Accuracy: 85.11555480957031 %
+2021-04-16 19:45:30,029 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:1 Iteration: 100  Loss: 2580.251708984375  Accuracy: 75.39502716064453 %
+2021-04-16 19:45:48,363 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:1 Iteration: 110  Loss: 2384.9462890625  Accuracy: 84.40909576416016 %
+2021-04-16 19:46:06,839 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:1 Iteration: 120  Loss: 2226.14453125  Accuracy: 74.53265380859375 %
+2021-04-16 19:46:25,366 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:1 Iteration: 130  Loss: 2065.8955078125  Accuracy: 75.77340698242188 %
+2021-04-16 19:46:43,754 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:1 Iteration: 140  Loss: 1911.940185546875  Accuracy: 75.88922882080078 %
+2021-04-16 19:47:02,347 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:1 Iteration: 150  Loss: 1609.85986328125  Accuracy: 76.23311614990234 %
+2021-04-16 19:47:20,640 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:1 Iteration: 160  Loss: 1424.358642578125  Accuracy: 75.93614196777344 %
+2021-04-16 19:47:39,214 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:1 Iteration: 170  Loss: 1259.4814453125  Accuracy: 77.44364929199219 %
+2021-04-16 19:47:57,730 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:1 Iteration: 180  Loss: 1008.80517578125  Accuracy: 77.74456024169922 %
+2021-04-16 19:48:16,146 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:1 Iteration: 190  Loss: 790.9472045898438  Accuracy: 76.67447662353516 %
+2021-04-16 19:48:34,405 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:1 Iteration: 200  Loss: 677.41748046875  Accuracy: 76.62818145751953 %
+2021-04-16 19:48:52,709 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:1 Iteration: 210  Loss: 391.8583679199219  Accuracy: 76.8065414428711 %
+2021-04-16 19:49:11,123 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:1 Iteration: 220  Loss: 296.10302734375  Accuracy: 89.08081817626953 %
+2021-04-16 19:49:26,920 - trainer4_aws - INFO: [trainer4_aws.py:train_model:195] - Epoch 1 completed. Time taken (seconds): 436.92208886146545
+2021-04-16 19:49:26,921 - trainer4_aws - INFO: [trainer4_aws.py:train_model:197] - 
+Accuracy: 84.44473266601562
+2021-04-16 19:49:26,922 - trainer4_aws - INFO: [trainer4_aws.py:train_model:198] - 
+LOSS:: 296.10302734375
+2021-04-16 19:50:30,799 - trainer4_aws - INFO: [trainer4_aws.py:on_message:253] - Model received from coordinator!
+2021-04-16 19:50:30,799 - trainer4_aws - INFO: [trainer4_aws.py:on_message:254] - Topic: fed_ml/coordinator/2/model
+2021-04-16 19:50:30,801 - trainer4_aws - INFO: [trainer4_aws.py:train_model:99] - Start training...
+2021-04-16 19:50:46,889 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:2 Iteration: 0  Loss: 5609.92578125  Accuracy: 36.72368621826172 %
+2021-04-16 19:51:05,286 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:2 Iteration: 10  Loss: 1410.2144775390625  Accuracy: 64.83378601074219 %
+2021-04-16 19:51:23,597 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:2 Iteration: 20  Loss: 655.3261108398438  Accuracy: 65.30030059814453 %
+2021-04-16 19:51:41,824 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:2 Iteration: 30  Loss: 706.8778686523438  Accuracy: 86.95209503173828 %
+2021-04-16 19:52:00,077 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:2 Iteration: 40  Loss: 411.683349609375  Accuracy: 88.09799194335938 %
+2021-04-16 19:52:18,394 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:2 Iteration: 50  Loss: 109.74386596679688  Accuracy: 88.06620025634766 %
+2021-04-16 19:52:36,852 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:2 Iteration: 60  Loss: 72.3748779296875  Accuracy: 88.32518005371094 %
+2021-04-16 19:52:55,117 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:2 Iteration: 70  Loss: 63.13869857788086  Accuracy: 98.22346496582031 %
+2021-04-16 19:53:13,486 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:2 Iteration: 80  Loss: 9.632408142089844  Accuracy: 87.73655700683594 %
+2021-04-16 19:53:31,820 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:2 Iteration: 90  Loss: 11.198925018310547  Accuracy: 98.10204315185547 %
+2021-04-16 19:53:50,241 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:2 Iteration: 100  Loss: 35.56992721557617  Accuracy: 88.5189208984375 %
+2021-04-16 19:54:08,525 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:2 Iteration: 110  Loss: 13.020641326904297  Accuracy: 99.21615600585938 %
+2021-04-16 19:54:26,872 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:2 Iteration: 120  Loss: 9.706648826599121  Accuracy: 89.78910827636719 %
+2021-04-16 19:54:45,177 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:2 Iteration: 130  Loss: 23.143333435058594  Accuracy: 88.6943130493164 %
+2021-04-16 19:55:03,508 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:2 Iteration: 140  Loss: 34.99982833862305  Accuracy: 88.74488067626953 %
+2021-04-16 19:55:21,894 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:2 Iteration: 150  Loss: 3.449098825454712  Accuracy: 99.0322036743164 %
+2021-04-16 19:55:40,179 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:2 Iteration: 160  Loss: 127.51106262207031  Accuracy: 99.0379638671875 %
+2021-04-16 19:55:58,563 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:2 Iteration: 170  Loss: 17.613140106201172  Accuracy: 98.77444458007812 %
+2021-04-16 19:56:16,991 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:2 Iteration: 180  Loss: 3.5273687839508057  Accuracy: 99.32926940917969 %
+2021-04-16 19:56:35,148 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:2 Iteration: 190  Loss: 16.9906063079834  Accuracy: 89.72430419921875 %
+2021-04-16 19:56:53,516 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:2 Iteration: 200  Loss: 18.826841354370117  Accuracy: 99.29022216796875 %
+2021-04-16 19:57:11,927 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:2 Iteration: 210  Loss: 7.953924179077148  Accuracy: 99.17387390136719 %
+2021-04-16 19:57:30,154 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:2 Iteration: 220  Loss: 13.57129955291748  Accuracy: 99.10836791992188 %
+2021-04-16 19:57:45,844 - trainer4_aws - INFO: [trainer4_aws.py:train_model:195] - Epoch 2 completed. Time taken (seconds): 435.04287981987
+2021-04-16 19:57:45,844 - trainer4_aws - INFO: [trainer4_aws.py:train_model:197] - 
+Accuracy: 88.97058868408203
+2021-04-16 19:57:45,844 - trainer4_aws - INFO: [trainer4_aws.py:train_model:198] - 
+LOSS:: 13.57129955291748
+2021-04-16 19:58:46,406 - trainer4_aws - INFO: [trainer4_aws.py:on_message:253] - Model received from coordinator!
+2021-04-16 19:58:46,407 - trainer4_aws - INFO: [trainer4_aws.py:on_message:254] - Topic: fed_ml/coordinator/3/model
+2021-04-16 19:58:46,408 - trainer4_aws - INFO: [trainer4_aws.py:train_model:99] - Start training...
+2021-04-16 19:59:02,453 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:3 Iteration: 0  Loss: 2715.68212890625  Accuracy: 57.578529357910156 %
+2021-04-16 19:59:21,021 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:3 Iteration: 10  Loss: 543.0471801757812  Accuracy: 71.5088882446289 %
+2021-04-16 19:59:39,341 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:3 Iteration: 20  Loss: 517.3983764648438  Accuracy: 76.29181671142578 %
+2021-04-16 19:59:57,800 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:3 Iteration: 30  Loss: 166.18841552734375  Accuracy: 78.0479965209961 %
+2021-04-16 20:00:16,380 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:3 Iteration: 40  Loss: 212.02561950683594  Accuracy: 87.51949310302734 %
+2021-04-16 20:00:34,597 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:3 Iteration: 50  Loss: 91.15834045410156  Accuracy: 87.52849578857422 %
+2021-04-16 20:00:53,013 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:3 Iteration: 60  Loss: 22.545297622680664  Accuracy: 98.94266510009766 %
+2021-04-16 20:01:11,310 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:3 Iteration: 70  Loss: 18.849685668945312  Accuracy: 89.24293518066406 %
+2021-04-16 20:01:29,714 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:3 Iteration: 80  Loss: 5.591512680053711  Accuracy: 88.3319091796875 %
+2021-04-16 20:01:47,902 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:3 Iteration: 90  Loss: 21.343481063842773  Accuracy: 88.17293548583984 %
+2021-04-16 20:02:06,270 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:3 Iteration: 100  Loss: 37.88820266723633  Accuracy: 88.30037689208984 %
+2021-04-16 20:02:24,893 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:3 Iteration: 110  Loss: 10.298006057739258  Accuracy: 98.94834899902344 %
+2021-04-16 20:02:43,238 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:3 Iteration: 120  Loss: 12.796191215515137  Accuracy: 98.75697326660156 %
+2021-04-16 20:03:01,609 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:3 Iteration: 130  Loss: 15.263199806213379  Accuracy: 89.45073699951172 %
+2021-04-16 20:03:19,946 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:3 Iteration: 140  Loss: 12.006025314331055  Accuracy: 98.70832061767578 %
+2021-04-16 20:03:38,298 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:3 Iteration: 150  Loss: 10.281852722167969  Accuracy: 98.73163604736328 %
+2021-04-16 20:03:56,590 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:3 Iteration: 160  Loss: 9.37004566192627  Accuracy: 98.72779846191406 %
+2021-04-16 20:04:15,003 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:3 Iteration: 170  Loss: 23.755678176879883  Accuracy: 88.68426513671875 %
+2021-04-16 20:04:33,293 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:3 Iteration: 180  Loss: 19.306203842163086  Accuracy: 98.94538116455078 %
+2021-04-16 20:04:51,679 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:3 Iteration: 190  Loss: 9.278555870056152  Accuracy: 99.06844329833984 %
+2021-04-16 20:05:10,227 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:3 Iteration: 200  Loss: 5.38601016998291  Accuracy: 99.29554748535156 %
+2021-04-16 20:05:28,627 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:3 Iteration: 210  Loss: 5.765096664428711  Accuracy: 99.13168334960938 %
+2021-04-16 20:05:47,196 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:3 Iteration: 220  Loss: 8.605143547058105  Accuracy: 99.28270721435547 %
+2021-04-16 20:06:02,993 - trainer4_aws - INFO: [trainer4_aws.py:train_model:195] - Epoch 3 completed. Time taken (seconds): 436.5846514701843
+2021-04-16 20:06:02,993 - trainer4_aws - INFO: [trainer4_aws.py:train_model:197] - 
+Accuracy: 99.17230224609375
+2021-04-16 20:06:02,993 - trainer4_aws - INFO: [trainer4_aws.py:train_model:198] - 
+LOSS:: 8.605143547058105
+2021-04-16 20:07:04,532 - trainer4_aws - INFO: [trainer4_aws.py:on_message:253] - Model received from coordinator!
+2021-04-16 20:07:04,532 - trainer4_aws - INFO: [trainer4_aws.py:on_message:254] - Topic: fed_ml/coordinator/4/model
+2021-04-16 20:07:04,533 - trainer4_aws - INFO: [trainer4_aws.py:train_model:99] - Start training...
+2021-04-16 20:07:20,538 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:4 Iteration: 0  Loss: 2605.8154296875  Accuracy: 57.47956466674805 %
+2021-04-16 20:07:39,014 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:4 Iteration: 10  Loss: 611.359375  Accuracy: 75.67313385009766 %
+2021-04-16 20:07:57,390 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:4 Iteration: 20  Loss: 211.18878173828125  Accuracy: 87.22654724121094 %
+2021-04-16 20:08:16,050 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:4 Iteration: 30  Loss: 32.348384857177734  Accuracy: 77.10779571533203 %
+2021-04-16 20:08:34,474 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:4 Iteration: 40  Loss: 31.962650299072266  Accuracy: 84.99614715576172 %
+2021-04-16 20:08:52,719 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:4 Iteration: 50  Loss: 27.976835250854492  Accuracy: 87.89430236816406 %
+2021-04-16 20:09:11,030 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:4 Iteration: 60  Loss: 12.041112899780273  Accuracy: 98.5163345336914 %
+2021-04-16 20:09:29,530 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:4 Iteration: 70  Loss: 9.61804485321045  Accuracy: 89.43387603759766 %
+2021-04-16 20:09:48,244 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:4 Iteration: 80  Loss: 7.79563045501709  Accuracy: 99.15841674804688 %
+2021-04-16 20:10:06,837 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:4 Iteration: 90  Loss: 86.79622650146484  Accuracy: 88.80567932128906 %
+2021-04-16 20:10:25,313 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:4 Iteration: 100  Loss: 18.901996612548828  Accuracy: 99.29808044433594 %
+2021-04-16 20:10:43,873 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:4 Iteration: 110  Loss: 5.565901756286621  Accuracy: 99.18408966064453 %
+2021-04-16 20:11:02,302 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:4 Iteration: 120  Loss: 7.101449966430664  Accuracy: 99.21012878417969 %
+2021-04-16 20:11:20,990 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:4 Iteration: 130  Loss: 21.738468170166016  Accuracy: 99.2420883178711 %
+2021-04-16 20:11:39,393 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:4 Iteration: 140  Loss: 2.0347506999969482  Accuracy: 99.35389709472656 %
+2021-04-16 20:11:57,890 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:4 Iteration: 150  Loss: 5.245718955993652  Accuracy: 99.39407348632812 %
+2021-04-16 20:12:16,523 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:4 Iteration: 160  Loss: 3.870431661605835  Accuracy: 99.38796997070312 %
+2021-04-16 20:12:34,938 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:4 Iteration: 170  Loss: 4.774243354797363  Accuracy: 89.71887969970703 %
+2021-04-16 20:12:53,376 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:4 Iteration: 180  Loss: 2.7665393352508545  Accuracy: 99.27642059326172 %
+2021-04-16 20:13:11,936 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:4 Iteration: 190  Loss: 2.359043836593628  Accuracy: 99.45845031738281 %
+2021-04-16 20:13:30,305 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:4 Iteration: 200  Loss: 4.187256336212158  Accuracy: 99.306640625 %
+2021-04-16 20:13:48,913 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:4 Iteration: 210  Loss: 4.587948799133301  Accuracy: 99.25431823730469 %
+2021-04-16 20:14:07,706 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:4 Iteration: 220  Loss: 6.621885299682617  Accuracy: 99.44132995605469 %
+2021-04-16 20:14:23,478 - trainer4_aws - INFO: [trainer4_aws.py:train_model:195] - Epoch 4 completed. Time taken (seconds): 438.94492864608765
+2021-04-16 20:14:23,479 - trainer4_aws - INFO: [trainer4_aws.py:train_model:197] - 
+Accuracy: 99.3890151977539
+2021-04-16 20:14:23,479 - trainer4_aws - INFO: [trainer4_aws.py:train_model:198] - 
+LOSS:: 6.621885299682617
+2021-04-16 20:15:32,939 - trainer4_aws - INFO: [trainer4_aws.py:on_message:253] - Model received from coordinator!
+2021-04-16 20:15:32,939 - trainer4_aws - INFO: [trainer4_aws.py:on_message:254] - Topic: fed_ml/coordinator/5/model
+2021-04-16 20:15:32,940 - trainer4_aws - INFO: [trainer4_aws.py:train_model:99] - Start training...
+2021-04-16 20:15:49,000 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:5 Iteration: 0  Loss: 1678.6197509765625  Accuracy: 39.73111343383789 %
+2021-04-16 20:16:07,601 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:5 Iteration: 10  Loss: 541.6224975585938  Accuracy: 58.69997024536133 %
+2021-04-16 20:16:26,016 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:5 Iteration: 20  Loss: 127.89471435546875  Accuracy: 76.38964080810547 %
+2021-04-16 20:16:44,221 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:5 Iteration: 30  Loss: 56.80390167236328  Accuracy: 88.02025604248047 %
+2021-04-16 20:17:02,685 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:5 Iteration: 40  Loss: 20.32640838623047  Accuracy: 88.30902862548828 %
+2021-04-16 20:17:20,839 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:5 Iteration: 50  Loss: 13.118364334106445  Accuracy: 97.74636840820312 %
+2021-04-16 20:17:39,241 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:5 Iteration: 60  Loss: 15.948131561279297  Accuracy: 98.71172332763672 %
+2021-04-16 20:17:57,713 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:5 Iteration: 70  Loss: 25.71048355102539  Accuracy: 89.12833404541016 %
+2021-04-16 20:18:16,260 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:5 Iteration: 80  Loss: 56.07815170288086  Accuracy: 88.45777893066406 %
+2021-04-16 20:18:34,521 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:5 Iteration: 90  Loss: 23.396089553833008  Accuracy: 98.99491119384766 %
+2021-04-16 20:18:52,761 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:5 Iteration: 100  Loss: 9.540766716003418  Accuracy: 99.00634765625 %
+2021-04-16 20:19:10,986 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:5 Iteration: 110  Loss: 13.08019733428955  Accuracy: 99.25904083251953 %
+2021-04-16 20:19:29,156 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:5 Iteration: 120  Loss: 5.46164083480835  Accuracy: 98.97219848632812 %
+2021-04-16 20:19:47,479 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:5 Iteration: 130  Loss: 4.516096115112305  Accuracy: 99.2771224975586 %
+2021-04-16 20:20:05,821 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:5 Iteration: 140  Loss: 6.8125834465026855  Accuracy: 99.21388244628906 %
+2021-04-16 20:20:24,737 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:5 Iteration: 150  Loss: 3.3567569255828857  Accuracy: 99.25939178466797 %
+2021-04-16 20:20:43,325 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:5 Iteration: 160  Loss: 8.997424125671387  Accuracy: 98.866943359375 %
+2021-04-16 20:21:01,663 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:5 Iteration: 170  Loss: 14.196634292602539  Accuracy: 89.90109252929688 %
+2021-04-16 20:21:20,005 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:5 Iteration: 180  Loss: 12.400922775268555  Accuracy: 99.24646759033203 %
+2021-04-16 20:21:38,323 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:5 Iteration: 190  Loss: 30.489299774169922  Accuracy: 89.36557006835938 %
+2021-04-16 20:21:57,108 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:5 Iteration: 200  Loss: 8.4225492477417  Accuracy: 99.38866424560547 %
+2021-04-16 20:22:15,880 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:5 Iteration: 210  Loss: 11.702434539794922  Accuracy: 99.31205749511719 %
+2021-04-16 20:22:34,491 - trainer4_aws - INFO: [trainer4_aws.py:train_model:171] - Global Epoch:5 Iteration: 220  Loss: 5.96278715133667  Accuracy: 99.47679138183594 %
+2021-04-16 20:22:50,714 - trainer4_aws - INFO: [trainer4_aws.py:train_model:195] - Epoch 5 completed. Time taken (seconds): 437.7740309238434
+2021-04-16 20:22:50,715 - trainer4_aws - INFO: [trainer4_aws.py:train_model:197] - 
+Accuracy: 99.32952880859375
+2021-04-16 20:22:50,715 - trainer4_aws - INFO: [trainer4_aws.py:train_model:198] - 
+LOSS:: 5.96278715133667

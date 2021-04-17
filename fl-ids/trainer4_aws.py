@@ -32,7 +32,7 @@ REMOTE_MQTT_HOST="172.31.7.28" # Change this IP address to the public IP Address
 REMOTE_MQTT_PORT=1883
 REMOTE_COORDINATOR_TOPIC="fed_ml/coordinator/+/model"
 
-batch_size = 10000
+batch_size = 5000
 data_file = 'data/TRAIN-4-DATA-IDS-2018-multiclass-bootstrap.csv'
 
 model_input_size = 78

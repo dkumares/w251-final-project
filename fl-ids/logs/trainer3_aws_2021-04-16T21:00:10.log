@@ -1,0 +1,28 @@
+2021-04-16 21:00:10,976 - trainer3_aws - INFO: [trainer3_aws.py:load_data:84] - Loading data...
+2021-04-16 21:00:55,333 - trainer3_aws - INFO: [trainer3_aws.py:load_data:94] - Completed loading data
+2021-04-16 21:01:09,870 - trainer3_aws - INFO: [trainer3_aws.py:GetPyTorchDataLoaders:80] - Completed loading data and returning pytorch train and validation data loaders
+2021-04-16 21:01:09,876 - trainer3_aws - INFO: [trainer3_aws.py:on_connect_remote:247] - Connected to remote broker with rc: 0
+2021-04-16 21:01:09,876 - trainer3_aws - INFO: [trainer3_aws.py:on_connect_remote:249] - Waiting for initial model from coordinator...
+2021-04-16 21:01:56,840 - trainer3_aws - INFO: [trainer3_aws.py:on_message:253] - Model received from coordinator!
+2021-04-16 21:01:56,841 - trainer3_aws - INFO: [trainer3_aws.py:on_message:254] - Topic: fed_ml/coordinator/1/model
+2021-04-16 21:01:56,843 - trainer3_aws - INFO: [trainer3_aws.py:train_model:99] - Start training...
+2021-04-16 21:02:14,503 - trainer3_aws - INFO: [trainer3_aws.py:train_model:171] - Global Epoch:1 Iteration: 0  Loss: 786669.875  Accuracy: 3.7524008750915527 %
+2021-04-16 21:02:34,461 - trainer3_aws - INFO: [trainer3_aws.py:train_model:171] - Global Epoch:1 Iteration: 10  Loss: 255798.609375  Accuracy: 33.623817443847656 %
+2021-04-16 21:02:54,381 - trainer3_aws - INFO: [trainer3_aws.py:train_model:171] - Global Epoch:1 Iteration: 20  Loss: 14861.9228515625  Accuracy: 35.08110427856445 %
+2021-04-16 21:03:14,543 - trainer3_aws - INFO: [trainer3_aws.py:train_model:171] - Global Epoch:1 Iteration: 30  Loss: 7935.10888671875  Accuracy: 40.72673797607422 %
+2021-04-16 21:03:34,785 - trainer3_aws - INFO: [trainer3_aws.py:train_model:171] - Global Epoch:1 Iteration: 40  Loss: 6794.16015625  Accuracy: 41.775333404541016 %
+2021-04-16 21:03:54,578 - trainer3_aws - INFO: [trainer3_aws.py:train_model:171] - Global Epoch:1 Iteration: 50  Loss: 3696.47802734375  Accuracy: 52.75136947631836 %
+2021-04-16 21:04:14,632 - trainer3_aws - INFO: [trainer3_aws.py:train_model:171] - Global Epoch:1 Iteration: 60  Loss: 2604.8642578125  Accuracy: 53.096649169921875 %
+2021-04-16 21:04:34,744 - trainer3_aws - INFO: [trainer3_aws.py:train_model:171] - Global Epoch:1 Iteration: 70  Loss: 1854.2176513671875  Accuracy: 54.55577087402344 %
+2021-04-16 21:04:54,478 - trainer3_aws - INFO: [trainer3_aws.py:train_model:171] - Global Epoch:1 Iteration: 80  Loss: 2024.8358154296875  Accuracy: 57.0524787902832 %
+2021-04-16 21:05:14,591 - trainer3_aws - INFO: [trainer3_aws.py:train_model:171] - Global Epoch:1 Iteration: 90  Loss: 2149.212646484375  Accuracy: 57.687835693359375 %
+2021-04-16 21:05:34,552 - trainer3_aws - INFO: [trainer3_aws.py:train_model:171] - Global Epoch:1 Iteration: 100  Loss: 2306.12548828125  Accuracy: 57.95441818237305 %
+2021-04-16 21:05:54,271 - trainer3_aws - INFO: [trainer3_aws.py:train_model:171] - Global Epoch:1 Iteration: 110  Loss: 1606.343017578125  Accuracy: 58.100196838378906 %
+2021-04-16 21:06:14,385 - trainer3_aws - INFO: [trainer3_aws.py:train_model:171] - Global Epoch:1 Iteration: 120  Loss: 1078.6827392578125  Accuracy: 58.27716064453125 %
+2021-04-16 21:06:34,586 - trainer3_aws - INFO: [trainer3_aws.py:train_model:171] - Global Epoch:1 Iteration: 130  Loss: 1797.4993896484375  Accuracy: 58.5171012878418 %
+2021-04-16 21:06:54,380 - trainer3_aws - INFO: [trainer3_aws.py:train_model:171] - Global Epoch:1 Iteration: 140  Loss: 1673.89794921875  Accuracy: 58.214447021484375 %
+2021-04-16 21:07:14,543 - trainer3_aws - INFO: [trainer3_aws.py:train_model:171] - Global Epoch:1 Iteration: 150  Loss: 1018.5540771484375  Accuracy: 58.13234329223633 %
+2021-04-16 21:07:34,331 - trainer3_aws - INFO: [trainer3_aws.py:train_model:171] - Global Epoch:1 Iteration: 160  Loss: 856.6367797851562  Accuracy: 58.160728454589844 %
+2021-04-16 21:07:54,147 - trainer3_aws - INFO: [trainer3_aws.py:train_model:171] - Global Epoch:1 Iteration: 170  Loss: 1111.2291259765625  Accuracy: 58.26860427856445 %
+2021-04-16 21:08:14,282 - trainer3_aws - INFO: [trainer3_aws.py:train_model:171] - Global Epoch:1 Iteration: 180  Loss: 964.2150268554688  Accuracy: 61.531253814697266 %
+2021-04-16 21:08:16,260 - trainer3_aws - INFO: [trainer3_aws.py:on_message:268] - Unexpected error: (<class 'KeyboardInterrupt'>, KeyboardInterrupt(), <traceback object at 0x7f0adaf8fb40>)
