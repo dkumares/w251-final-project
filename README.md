@@ -72,3 +72,9 @@ A video demo run on three NVIDIA Jetson devices using stub data can be found [he
 
 ![accuracy_charts](files/accuracy_charts.png)
 
+## Contact:
+
+Dhileeban Kumaresan - dkumares@berkeley.edu
+Jocelyn Lu - jocelyn.r.lu@berkeley.edu
+Nitin Pillai - nitin.pillai@berkeley.edu
+Riyaz Kasmani - rkasmani@berkeley.edu
